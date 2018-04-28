@@ -83,37 +83,12 @@
     <Allegro_AddonVideo>true</Allegro_AddonVideo>
     <Allegro_LibraryType>DynamicDebug</Allegro_LibraryType>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Allegro_AddonImage>true</Allegro_AddonImage>
-    <Allegro_AddonTTF>true</Allegro_AddonTTF>
-    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
-    <Allegro_AddonAudio>true</Allegro_AddonAudio>
-    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
-    <Allegro_AddonColor>true</Allegro_AddonColor>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Allegro_AddonImage>true</Allegro_AddonImage>
-    <Allegro_AddonTTF>true</Allegro_AddonTTF>
-    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
-    <Allegro_AddonAudio>true</Allegro_AddonAudio>
-    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
-    <Allegro_AddonColor>true</Allegro_AddonColor>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Allegro_AddonImage>true</Allegro_AddonImage>
-    <Allegro_AddonTTF>true</Allegro_AddonTTF>
-    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
-    <Allegro_AddonAudio>true</Allegro_AddonAudio>
-    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
-    <Allegro_AddonColor>true</Allegro_AddonColor>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +108,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -148,7 +122,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -160,18 +133,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allegroClass.h" />
-    <ClInclude Include="allegro_ctrl.h" />
     <ClInclude Include="bitinit.h" />
     <ClInclude Include="client.h" />
-    <ClInclude Include="controller.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Ev_t.h" />
     <ClInclude Include="general.h" />
     <ClInclude Include="init_arr.h" />
     <ClInclude Include="netData.h" />
+<<<<<<< HEAD
     <ClInclude Include="network_ctrl.h" />
     <ClInclude Include="observer.h" />
     <ClInclude Include="obs_stage.h" />
+=======
+>>>>>>> parent of 50e3149... Leer descripcion
     <ClInclude Include="paquete.h" />
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parser.h" />
@@ -182,14 +156,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allegroClass.cpp" />
-    <ClCompile Include="allegro_ctrl.cpp" />
     <ClCompile Include="client.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="init_arr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="netData.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="network_ctrl.cpp" />
     <ClCompile Include="obs_stage.cpp" />
+=======
+>>>>>>> parent of 50e3149... Leer descripcion
     <ClCompile Include="paquete.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
     <ClCompile Include="parser.cpp" />

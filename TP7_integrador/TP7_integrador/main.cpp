@@ -55,7 +55,11 @@ int main(int argc, char * argv[])
 
 		while (!net.getIfShouldEnd())
 		{
+<<<<<<< HEAD
 			while (1)//La idea es que el vector de controllers devuelva eventosS
+=======
+			while (eventHandler.getEvent(allegroTools.getEventQueue()))
+>>>>>>> parent of 50e3149... Leer descripcion
 			{
 				eventHandler.ctrl[0].get_event());
 				if (eventHandler.isThereEvent())
@@ -63,7 +67,7 @@ int main(int argc, char * argv[])
 					eventHandler.handleEventDispatcher(stage);
 					allegroTools.updateDisplay();
 				}
-			};
+			}
 			if (net.getCurrentMode() == SERVER)
 			{													//Actuo de server
 
