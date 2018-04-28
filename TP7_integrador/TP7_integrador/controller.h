@@ -1,8 +1,8 @@
 #pragma once
-#include "EventHandler.h"
+#include "Ev_t.h"
 class controller
 {
 public:
-	virtual Ev_t get_event()=0;
+	virtual Ev_t* get_event()=0;
 };
 

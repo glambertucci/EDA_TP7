@@ -120,6 +120,12 @@
     <ClInclude Include="observer.h">
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
+    <ClInclude Include="network_ctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ev_t.h">
+      <Filter>Header Files\Miscelanous</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="obs_stage.cpp">
       <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="network_ctrl.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

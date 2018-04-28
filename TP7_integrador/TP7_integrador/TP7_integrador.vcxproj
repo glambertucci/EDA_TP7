@@ -165,9 +165,11 @@
     <ClInclude Include="client.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Ev_t.h" />
     <ClInclude Include="general.h" />
     <ClInclude Include="init_arr.h" />
     <ClInclude Include="netData.h" />
+    <ClInclude Include="network_ctrl.h" />
     <ClInclude Include="observer.h" />
     <ClInclude Include="obs_stage.h" />
     <ClInclude Include="paquete.h" />
@@ -186,6 +188,7 @@
     <ClCompile Include="init_arr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="netData.cpp" />
+    <ClCompile Include="network_ctrl.cpp" />
     <ClCompile Include="obs_stage.cpp" />
     <ClCompile Include="paquete.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
