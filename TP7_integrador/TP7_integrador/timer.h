@@ -1,7 +1,6 @@
 #pragma once
 #include <chrono>
 
-
 #define TIMERERROR (-1)
 
 // Este Timer usa Chrono para saber cuanto tiempo pasa desde que empieza hasta que se para. Al llamar al constructor se empieza el timer.

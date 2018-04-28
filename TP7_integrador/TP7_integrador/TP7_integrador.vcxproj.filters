@@ -13,60 +13,214 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Class">
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{32262a5f-e776-4437-ab1a-5ea40b5a16c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Parser">
+      <UniqueIdentifier>{e12fc470-97df-4ff9-97c1-988ade778b9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Net">
+      <UniqueIdentifier>{a8a65b65-f11e-4858-869d-ad2dcc384291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{8f58fdae-1eca-4856-9a0b-16aaeee8aa87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Miscelanous">
+      <UniqueIdentifier>{a2bf4d1b-aa5a-4253-bc07-d7ee179ad4f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{c2c224c0-1152-47c2-96c3-49bb3d6cc946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Net">
+      <UniqueIdentifier>{cb9cc592-d012-4c6e-b1f5-4b345c4adc55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscelanous">
       <UniqueIdentifier>{fc007df3-920c-4db8-ad7f-8a7319ac6902}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Class">
-      <UniqueIdentifier>{a2bf4d1b-aa5a-4253-bc07-d7ee179ad4f9}</UniqueIdentifier>
+    <Filter Include="Resource Files\WormWalk">
+      <UniqueIdentifier>{23291611-6de6-43db-86b9-18a569fc2743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\WormJump">
+      <UniqueIdentifier>{85895b7a-270e-4e4e-8475-9737f02225da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Worms">
+      <UniqueIdentifier>{255b982c-0811-4311-a614-4b43149a86d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Worms">
+      <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="init_arr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitinit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client.h">
-      <Filter>Header Files\Class</Filter>
-    </ClInclude>
     <ClInclude Include="timer.h">
-      <Filter>Header Files\Class</Filter>
+      <Filter>Header Files\Miscelanous</Filter>
     </ClInclude>
-    <ClInclude Include="allegroClass.h">
-      <Filter>Header Files\Class</Filter>
+    <ClInclude Include="parser.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="server.h">
-      <Filter>Header Files\Class</Filter>
+    <ClInclude Include="parseCmdLine.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="netData.h">
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
     <ClInclude Include="paquete.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="bitinit.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="allegroClass.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="client.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="general.h">
+      <Filter>Header Files\Miscelanous</Filter>
+    </ClInclude>
+    <ClInclude Include="init_arr.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\Miscelanous</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>Header Files\Worms</Filter>
+    </ClInclude>
+    <ClInclude Include="Worm.h">
+      <Filter>Header Files\Worms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="paquete.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="init_arr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="client.cpp">
-      <Filter>Source Files\Class</Filter>
-    </ClCompile>
     <ClCompile Include="timer.cpp">
-      <Filter>Source Files\Class</Filter>
+      <Filter>Source Files\Miscelanous</Filter>
     </ClCompile>
-    <ClCompile Include="server.cpp">
-      <Filter>Source Files\Class</Filter>
+    <ClCompile Include="parser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parseCmdLine.cpp">
+      <Filter>Source Files\Parser</Filter>
     </ClCompile>
     <ClCompile Include="allegroClass.cpp">
-      <Filter>Source Files\Class</Filter>
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="client.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="init_arr.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="paquete.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="netData.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\Miscelanous</Filter>
+    </ClCompile>
+    <ClCompile Include="Worm.cpp">
+      <Filter>Source Files\Worms</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Source Files\Worms</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Worms Images\Scenario.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F1.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F2.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F3.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F4.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F5.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F6.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F7.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F8.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F9.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F10.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F11.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F12.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F13.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F14.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wwalking\wwalk-F15.png">
+      <Filter>Resource Files\WormWalk</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F1.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F2.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F3.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F4.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F5.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F6.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F7.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F8.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F9.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+    <Image Include="Worms Images\wjump\wjump-F10.png">
+      <Filter>Resource Files\WormJump</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="RussiaAnthem.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

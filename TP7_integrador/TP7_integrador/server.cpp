@@ -1,11 +1,12 @@
 #include "server.h"
+#include <string>
+#include <iostream>
+
+const int HELLO_PORT = 15667;
 
 
-const int HELLO_PORT = 12345;
-
-
-string server::wait_for_message() {
-	string res;
+std::string server::wait_for_message() {
+	std::string res;
 	boost::system::error_code error;
 	char buf[1 + 255 + 1];
 	do {
@@ -36,11 +37,11 @@ server::server() {
 	socket_forServer = new boost::asio::ip::tcp::socket(*IO_handler);
 	server_acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler,
 		boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), HELLO_PORT));
-	cout << std::endl << "Ready. Port " << HELLO_PORT << " created" << std::endl;
+	std::cout << std::endl << "Ready. Port " << HELLO_PORT << " created" << std::endl;
 }
 
 server::~server() {
-	cout << "closing server \n";
+	std::cout << "closing server \n";
 	server_acceptor->close();
 	socket_forServer->close();
 	delete server_acceptor;

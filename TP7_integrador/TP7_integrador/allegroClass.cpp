@@ -34,19 +34,19 @@ allegro_c::allegro_c()
 						}
 					}
 					else
-						fprintf(stderr, "ERROR: Failed to load Image addon\n");
+						std::cout << "ERROR: Failed to load Image addon\n" << std::endl;
 				}
 				else
-					fprintf(stderr, "ERROR: Failed to reserve sample\n");
+					std::cout << "ERROR: Failed to reserve sample\n" << std::endl;
 			}
 			else
-				fprintf(stderr, "ERROR: Failed to install acodec addon\n");
+				std::cout << "ERROR: Failed to install acodec addon\n" << std::endl;
 		}
 		else
-			fprintf(stderr, "ERROR: Failed to install audio\n");
+			std::cout << "ERROR: Failed to install audio\n" << std::endl;
 	}
 	else
-		fprintf(stderr, "ERROR: Failed to initialize allegro system\n");
+		std::cout << "ERROR: Failed to initialize allegro system\n" << std::endl;
 }
 
 allegro_c::~allegro_c()
@@ -62,7 +62,7 @@ allegro_c::~allegro_c()
 bool allegro_c::load_music(const char * music_file) //Devuelve 1 si todo salio bien
 {
 	bool result;
-	if ((music = al_load_sample(music_file)))
+	if (this->music = al_load_sample(music_file))
 		result = true;
 	else
 		result = false;
@@ -82,5 +82,5 @@ ALLEGRO_EVENT_QUEUE * allegro_c::getEventQueue()
 
 void allegro_c::play_music()
 {
-	al_play_sample(music, 1.0, 1.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_play_sample(this->music, 1.0, 1.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
