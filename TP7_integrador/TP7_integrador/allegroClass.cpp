@@ -82,5 +82,5 @@ ALLEGRO_EVENT_QUEUE * allegro_c::getEventQueue()
 
 void allegro_c::play_music()
 {
-	al_play_sample(this->music, 1.0, 1.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_play_sample(this->music, 1.0, 0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 }

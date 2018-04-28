@@ -219,7 +219,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="RussiaAnthem.wav">
+    <Media Include="russia.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

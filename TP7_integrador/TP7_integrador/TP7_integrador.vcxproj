@@ -191,7 +191,7 @@
     <Image Include="Worms Images\wwalking\wwalk-F9.png" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="RussiaAnthem.wav" />
+    <Media Include="russia.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
