@@ -16,15 +16,13 @@ Evnt trasformAllegroEvents(int key)
 	switch (key)
 	{
 	case ALLEGRO_KEY_LEFT:
-	case ALLEGRO_KEY_A:
 		ev = LEFT_EV;
 		break;
 	case ALLEGRO_KEY_RIGHT:
-	case ALLEGRO_KEY_D:
 		ev = RIGHT_EV;
 		break;
 	case ALLEGRO_KEY_UP:
-	case ALLEGRO_KEY_W:
+
 		ev = JUMP_EV;
 		break;
 	case ALLEGRO_KEY_ESCAPE:

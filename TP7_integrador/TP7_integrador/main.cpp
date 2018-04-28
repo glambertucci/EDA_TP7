@@ -27,7 +27,7 @@
 #include "init_arr.h"
 
 #define MAX_INPUT_SIZE 4 // Nombre del programa + "-IP" + [La IP] + iniciar/escuchar (según).
-#define BACKGROUNDSONG "RussiaAnthem.wav"
+#define BACKGROUNDSONG "russia.wav"
 
 int main(int argc, char * argv[])
 {
