@@ -55,14 +55,14 @@ int main(int argc, char * argv[])
 
 		while (!net.getIfShouldEnd())
 		{
-			while (eventHandler.getEvent(allegroTools.getEventQueue()))
+			while (eventHandler.ctrl[0].get_event()))//La idea es que el vector de controllers devuelva eventosS
 			{
 				if (eventHandler.isThereEvent())
 				{
 					eventHandler.handleEventDispatcher(stage);
 					allegroTools.updateDisplay();
 				}
-			}
+			};
 			if (net.getCurrentMode() == SERVER)
 			{													//Actuo de server
 

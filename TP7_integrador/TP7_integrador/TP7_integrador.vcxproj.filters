@@ -49,6 +49,18 @@
     <Filter Include="Source Files\Worms">
       <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{df3462cd-b84e-44ad-a4fe-3c8140e400d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{7f14d696-4006-401d-b0eb-eadc14f21555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{dd97c583-61d7-4aa8-930b-4bf1a83315ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Observer">
+      <UniqueIdentifier>{3f5e3f3c-4cab-48c6-a2c1-9ea02b1eebb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -96,6 +108,18 @@
     <ClInclude Include="Worm.h">
       <Filter>Header Files\Worms</Filter>
     </ClInclude>
+    <ClInclude Include="allegro_ctrl.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="obs_stage.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="observer.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -136,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>Source Files\Worms</Filter>
+    </ClCompile>
+    <ClCompile Include="allegro_ctrl.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="obs_stage.cpp">
+      <Filter>Source Files\Observer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

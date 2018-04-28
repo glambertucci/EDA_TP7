@@ -2,7 +2,7 @@
 #include <vector>
 #include "Timer.h"
 #include "Stage.h"
-
+#include <list>
 using namespace std;
 
 
@@ -20,6 +20,7 @@ typedef struct {
 	Evnt lastEv;
 	Timer * time;
 	bool active;
+	unsigned int wormID;
 	int keycode;
 	bool keyPressed = true;
 
@@ -61,7 +62,8 @@ class EventHandler {
 public:
 	EventHandler();
 
-	bool getEvent(ALLEGRO_EVENT_QUEUE *  eq);		// Gets the event from the event queue and/or other mediums not yet implemented
+	//bool getEvent(ALLEGRO_EVENT_QUEUE *  eq);		// Gets the event from the event queue and/or other mediums not yet implemented
+	vector<controller> ctrl;
 	bool isThereEvent();							// Checks if there is an active event
 	void handleEventDispatcher(Stage& stage);		// Dispatches multiple events
 private:
@@ -72,6 +74,6 @@ private:
 	bool moveWorm1(int ev);
 	bool moveWorm2(int ev);
 
-	array<Ev_t, 3>events;
+	list<Ev_t>events;
 };
 
