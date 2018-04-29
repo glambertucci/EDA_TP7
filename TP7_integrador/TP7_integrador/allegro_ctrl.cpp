@@ -3,7 +3,6 @@
 Evnt trasformAllegroEvents(int key)
 {
 	Evnt ev = NOEVENT;
-
 	switch (key)
 	{
 	case ALLEGRO_KEY_LEFT:

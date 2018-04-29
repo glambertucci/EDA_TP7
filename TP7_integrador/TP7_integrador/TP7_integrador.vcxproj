@@ -172,6 +172,7 @@
     <ClCompile Include="Worm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="background.png" />
     <Image Include="Worms Images\Scenario.png" />
     <Image Include="Worms Images\wjump\wjump-F1.png" />
     <Image Include="Worms Images\wjump\wjump-F10.png" />

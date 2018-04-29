@@ -262,6 +262,9 @@
     <Image Include="Worms Images\wjump\wjump-F10.png">
       <Filter>Resource Files\WormJump</Filter>
     </Image>
+    <Image Include="background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="russia.wav">

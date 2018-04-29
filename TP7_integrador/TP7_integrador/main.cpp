@@ -30,7 +30,7 @@
 #include "observer.h"
 
 #define MAX_INPUT_SIZE 4 // Nombre del programa + "-IP" + [La IP] + iniciar/escuchar (según).
-#define BACKGROUNDSONG "russia.wav"
+#define BACKGROUNDSONG "dbs.wav"
 /*
 int main(int argc, char * argv[])
 {
@@ -102,7 +102,7 @@ int main(int argc, char * argv[])
 		Stage stage;
 		allegro_c allegroTools; //Inicialización de Allegro.
 		allegroTools.load_music(BACKGROUNDSONG);
-		//allegroTools.play_music();
+		allegroTools.play_music();
 		//Controller
 		EventHandler eventHandler;
 		allegro_ctrl al_ctrl(allegroTools.getEventQueue());
