@@ -25,12 +25,12 @@ Evnt trasformAllegroEvents(int key)
 	return ev;
 }
 
-Al_ctrl::Al_ctrl(ALLEGRO_EVENT_QUEUE * eq_)
+allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_)
 {
 	eq = eq_;
 }
 
-void * Al_ctrl::getEvent(void * data)
+void * allegro_ctrl::getEvent(void * data)
 {
 	ev[0].deactivate();
 	ev[1].deactivate();
@@ -95,7 +95,7 @@ void * Al_ctrl::getEvent(void * data)
 	return ev;
 }
 
-bool Al_ctrl::isThereEvent()
+bool allegro_ctrl::isThereEvent()
 {
 	return (ev[0].active || ev[1].active);
 }
@@ -103,12 +103,12 @@ bool Al_ctrl::isThereEvent()
 
 
 
-Al_ctrl::~Al_ctrl()
+allegro_ctrl::~allegro_ctrl()
 {
 }
 
 
-void Al_ctrl::setEvent(Evnt evento, unsigned int wormID) {
+void allegro_ctrl::setEvent(Evnt evento, unsigned int wormID) {
 
 
 	if (evento != TIMER_EV) {
@@ -122,7 +122,7 @@ void Al_ctrl::setEvent(Evnt evento, unsigned int wormID) {
 
 }
 
-bool Al_ctrl::validKey(int key) {
+bool allegro_ctrl::validKey(int key) {
 
 	return (key == ALLEGRO_KEY_LEFT || key == ALLEGRO_KEY_RIGHT || key == ALLEGRO_KEY_UP);
 }

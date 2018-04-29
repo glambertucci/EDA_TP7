@@ -38,8 +38,8 @@ int main(int argc, char * argv[])
 	if ((argc > 1 && argc <= MAX_INPUT_SIZE) && (parseCmdLine(argc, argv, &parseCallback, &net) != ERRORPARSE)) //Evaluación de los parámetros. Si son correctos se continúa con el programa, de lo contrario pasamos a imprimir el mensaje de error.
 	{
 		allegro_c allegroTools; //Inicialización de Allegro.
-	//	allegroTools.load_music(BACKGROUNDSONG);
-	//	allegroTools.play_music();
+		allegroTools.load_music(BACKGROUNDSONG);
+		allegroTools.play_music();
 
 		EventHandler eventHandler;
 		Stage stage;
@@ -55,15 +55,14 @@ int main(int argc, char * argv[])
 
 		while (!net.getIfShouldEnd())
 		{
-			while (1)//La idea es que el vector de controllers devuelva eventosS
+			while (eventHandler.getEvent(allegroTools.getEventQueue()))
 			{
-				eventHandler.ctrl[0].get_event());
 				if (eventHandler.isThereEvent())
 				{
 					eventHandler.handleEventDispatcher(stage);
 					allegroTools.updateDisplay();
 				}
-			};
+			}
 			if (net.getCurrentMode() == SERVER)
 			{													//Actuo de server
 

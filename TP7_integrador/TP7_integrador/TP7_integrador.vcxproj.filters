@@ -46,20 +46,20 @@
     <Filter Include="Header Files\Worms">
       <UniqueIdentifier>{255b982c-0811-4311-a614-4b43149a86d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{a411833d-66d8-4656-b9d7-e6be4de10691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{22220c8d-952f-4925-828a-e61fcbd26974}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Worms">
       <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{df3462cd-b84e-44ad-a4fe-3c8140e400d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{7f14d696-4006-401d-b0eb-eadc14f21555}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Observer">
-      <UniqueIdentifier>{dd97c583-61d7-4aa8-930b-4bf1a83315ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Observer">
-      <UniqueIdentifier>{3f5e3f3c-4cab-48c6-a2c1-9ea02b1eebb7}</UniqueIdentifier>
+      <UniqueIdentifier>{ffad3ec7-1bfe-4237-9af9-e2abc590d017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{b69576b7-6fd4-4bac-b1e1-5cd78db5cb40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,20 +108,17 @@
     <ClInclude Include="Worm.h">
       <Filter>Header Files\Worms</Filter>
     </ClInclude>
-    <ClInclude Include="allegro_ctrl.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="controller.h">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="observer.h">
+      <Filter>Header Files\Observer</Filter>
     </ClInclude>
     <ClInclude Include="obs_stage.h">
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
-    <ClInclude Include="observer.h">
-      <Filter>Header Files\Observer</Filter>
+    <ClInclude Include="allegro_ctrl.h">
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="network_ctrl.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Ev_t.h">
       <Filter>Header Files\Miscelanous</Filter>
@@ -170,11 +167,11 @@
     <ClCompile Include="allegro_ctrl.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="network_ctrl.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
     <ClCompile Include="obs_stage.cpp">
       <Filter>Source Files\Observer</Filter>
-    </ClCompile>
-    <ClCompile Include="network_ctrl.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +255,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="RussiaAnthem.wav">
+    <Media Include="russia.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

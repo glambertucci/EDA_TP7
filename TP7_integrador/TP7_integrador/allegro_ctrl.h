@@ -1,13 +1,14 @@
 #pragma once
-#include "allegroClass.h"
 #include "controller.h"
+#include "allegroClass.h"
+Evnt trasformAllegroEvents(int key);
 
-class Al_ctrl :
+class allegro_ctrl :
 	public controller
 {
 public:
-	Al_ctrl(ALLEGRO_EVENT_QUEUE * eq_);
-	~Al_ctrl();
+	allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_);
+	~allegro_ctrl();
 
 	void * getEvent(void * data);
 	bool isThereEvent();
