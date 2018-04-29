@@ -61,6 +61,12 @@
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{b69576b7-6fd4-4bac-b1e1-5cd78db5cb40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{f1d80bc6-99d6-4099-af9b-faf937b6170d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{2ba18a3e-715e-4ebf-807d-3970ff46af7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -99,9 +105,6 @@
     <ClInclude Include="init_arr.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>Header Files\Miscelanous</Filter>
-    </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>Header Files\Worms</Filter>
     </ClInclude>
@@ -120,8 +123,14 @@
     <ClInclude Include="network_ctrl.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="controller.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
     <ClInclude Include="Ev_t.h">
-      <Filter>Header Files\Miscelanous</Filter>
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +164,6 @@
     <ClCompile Include="netData.cpp">
       <Filter>Source Files\Net</Filter>
     </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>Source Files\Miscelanous</Filter>
-    </ClCompile>
     <ClCompile Include="Worm.cpp">
       <Filter>Source Files\Worms</Filter>
     </ClCompile>
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="obs_stage.cpp">
       <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,6 @@
 class controller
 {
 public:
-	virtual Ev_t* get_event() = 0;
+	virtual void* get_event(void * data) = 0;
 };
 

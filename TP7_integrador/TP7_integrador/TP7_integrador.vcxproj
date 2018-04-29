@@ -136,6 +136,7 @@
     <ClInclude Include="allegro_ctrl.h" />
     <ClInclude Include="bitinit.h" />
     <ClInclude Include="client.h" />
+    <ClInclude Include="controller.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Ev_t.h" />
     <ClInclude Include="general.h" />

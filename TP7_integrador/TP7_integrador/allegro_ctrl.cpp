@@ -30,7 +30,7 @@ allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_)
 	eq = eq_;
 }
 
-void * allegro_ctrl::getEvent(void * data)
+void * allegro_ctrl::get_event(void * data)
 {
 	ev[0].deactivate();
 	ev[1].deactivate();
@@ -38,7 +38,6 @@ void * allegro_ctrl::getEvent(void * data)
 	ALLEGRO_EVENT alEv;
 
 	int * size = (int *)data;
-	*size = 2;
 
 	if (al_get_next_event(eq, &alEv)) {
 
@@ -46,14 +45,17 @@ void * allegro_ctrl::getEvent(void * data)
 		case ALLEGRO_EVENT_KEY_DOWN:
 
 			if (alEv.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
-				ev[1].Event = QUIT_EV;
+			{
+				ev[2].activate();
+				ev[2].Event = QUIT_EV;
+			}
 			else
 				if (!ev[0].active && validKey(alEv.keyboard.keycode) && !ev[0].timerExist())
 					setEvent(trasformAllegroEvents(alEv.keyboard.keycode), Wid);
 			break;
 		case ALLEGRO_EVENT_KEY_UP:
 			if (ev[0].timerExist() && ev[0].Event == trasformAllegroEvents(alEv.keyboard.keycode)) {
-				if (!ev[0].timerGreaterThan(100))
+				if (!ev[0].timerGreaterThan(400))
 				{
 					if (!ev[0].active && ev[0].Event == LEFT_EV) {
 						ev[0].Event = FLIP_LEFT_EV;
@@ -92,7 +94,15 @@ void * allegro_ctrl::getEvent(void * data)
 		}
 	}
 
-	return ev;
+	int counter = 0;
+	for (int i =0;i<3;i++)
+	{
+		if (ev[i].active)
+			retValue[counter++] = ev[i];
+	}
+	*size = counter;
+
+	return retValue;
 }
 
 bool allegro_ctrl::isThereEvent()

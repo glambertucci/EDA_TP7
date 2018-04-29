@@ -2,6 +2,6 @@
 class observer
 {
 public:
-	virtual void update() = 0;
+	virtual void update(void* put) = 0;
 };
 

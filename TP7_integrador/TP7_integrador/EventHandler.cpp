@@ -7,7 +7,7 @@
 using namespace std;
 
 
-
+/*
 // Transforma eventos de allegro en eventos de mi programa
 
 EventHandler::EventHandler()
@@ -30,7 +30,7 @@ la tecla sin querer (100ms en este caso) y se activa el evento correspondiente.
 Por ultimo, cuando se suelta la tecla, se verifica si el tiempo del timer es menor a 100ms y se desruye el timer. Si el tiempo es menor,
 entonces va a flipear hacia donde se le indico. Sino, no hace nada.
 
-*/
+
 
 
 
@@ -38,7 +38,7 @@ bool EventHandler::getEvent(ALLEGRO_EVENT_QUEUE * eq)
 {
 	ALLEGRO_EVENT ev;
 	bool quit = false;
-
+	//Tenes que desactivar los eventos cada vez que entras
 	al_get_next_event(eq, &ev);
 
 
@@ -47,18 +47,18 @@ bool EventHandler::getEvent(ALLEGRO_EVENT_QUEUE * eq)
 	case ALLEGRO_EVENT_KEY_DOWN:
 
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
-			quit = true;
+			quit = true;		// Hace un evnto de Quit
 		else
-			for (int i = 0; i < 2; ++i)
+			for (int i = 0; i < 2; ++i)	// Solo hay un worm
 				if (!this->events[i].active && moveWorm(ev.keyboard.keycode, i) && !this->events[i].timerExist())
 					setEvent(trasformAllegroEvents(ev.keyboard.keycode), i);
 
 		break;
 	case ALLEGRO_EVENT_KEY_UP:
 
-		for (int i = 0; i < 2; ++i)
+		for (int i = 0; i < 2; ++i)// Solo hay un worm
 			if (this->events[i].timerExist() && this->events[i].Event == trasformAllegroEvents(ev.keyboard.keycode)) {
-				if (!this->events[i].timerGreaterThan(100))
+				if (!this->events[i].timerGreaterThan(100)) // Pone este 100 con un define
 				{
 					if (!this->events[i].active && this->events[i].Event == LEFT_EV) {
 						this->events[i].Event = FLIP_LEFT_EV;
@@ -74,15 +74,15 @@ bool EventHandler::getEvent(ALLEGRO_EVENT_QUEUE * eq)
 		break;
 	case ALLEGRO_EVENT_TIMER:
 		this->setEvent(TIMER_EV, 2);
-		this->events[2].activate();
+		this->events[2].activate();	// Este iria en la posicion 1
 
 
-		for (int i = 0; i < 2; ++i)
+		for (int i = 0; i < 2; ++i) // Solo hay un worm
 			if (!this->events[i].active && this->events[i].timerExist())
 			{
 				this->events[i].time->stop();
 				float time_ = this->events[i].time->getTime();
-				if (time_ >= 300)//100)//Debug
+				if (time_ >= 100)//Hacelo con define
 				{
 					this->events[i].activate();
 					this->events[i].time->start();
@@ -93,16 +93,18 @@ bool EventHandler::getEvent(ALLEGRO_EVENT_QUEUE * eq)
 
 		break;
 	case ALLEGRO_EVENT_DISPLAY_CLOSE:
-		quit = true;
+		quit = true;// HAce evento de Quit
 		break;
 	}
 
-	if (quit)
-		for (int i = 0; i < 2; i++)
+	if (quit)		// Esto es al pedo. podes hacerlo para cuando haya eventos de Quit
+		for (int i = 0; i < 2; i++) // Solo hay un worm
 			if (this->events[i].timerExist())
 				this->events[i].killTimer();
 
-	return !quit;
+	// hace un sistema que devuelva un puntero a eventos activos y de alguna forma manda el tamaño del mismo.
+
+	return !quit; // Que devuelva un arreglo de eventos activos.
 
 }
 
@@ -179,4 +181,79 @@ bool EventHandler::moveWorm1(int ev)
 bool EventHandler::moveWorm2(int ev)
 {
 	return ((ev == ALLEGRO_KEY_W) || (ev == ALLEGRO_KEY_A) || (ev == ALLEGRO_KEY_D));
+}
+*/
+
+
+EventHandler::EventHandler()
+{
+}
+
+
+EventHandler::~EventHandler()
+{
+}
+
+void EventHandler::loadController(controller * cont)
+{
+	controllers.push_back(cont);
+}
+
+void EventHandler::getEvent()		// El networking tambien tiene que tener un controller que le de eventos. hay que usar herencia con controller
+{									//  y que el puntero a void sea un int que te da la cantidad de elementos que hay;
+	int size = 0;
+	for (controller * controller : controllers) {
+		Ev_t * evs = (Ev_t *)controller->get_event(&size);
+		for (int i = 0; i < size; i++)
+			events.push_back(evs[i]);
+	}
+}
+
+bool EventHandler::areThereActiveEvents()
+{
+	bool retValue = false;
+
+	for (Ev_t& ev : events)
+		if (ev.active)
+			retValue = true;
+
+
+	return retValue;
+}
+
+Ev_t * EventHandler::returnEvent(int * size)
+{
+	Ev_t retValue[5];
+	for (int i = 0; i < 5; i++)
+		retValue->deactivate();
+
+
+	for (int i = 0; i < 5 && !events.empty(); i++) {
+		retValue[i] = events.front();
+		events.pop_front();
+		*size = i + 1;
+	}
+	return retValue;
+}
+
+void EventHandler::displatchEvent(Ev_t & ev, Stage& stage)
+{
+	switch (ev.Event) {
+	case LEFT_EV: stage.wormMoveLeft(ev.wormID); break;
+	case RIGHT_EV: stage.wormMoveRight(ev.wormID); break;
+	case JUMP_EV: stage.wormJump(ev.wormID); break;
+	case FLIP_RIGHT_EV: stage.wormFlipRight(ev.wormID); break;
+	case FLIP_LEFT_EV: stage.wormFlipLeft(ev.wormID); break;
+	case QUIT_EV: stage.quit(); break;
+	case TIMER_EV: stage.refresh();	break;
+	}
+}
+
+
+void EventHandler::HandleEventDispatch(Stage& stage)
+{
+	while (events.size()) {
+		displatchEvent(*events.begin(), stage);
+		events.pop_front();
+	}
 }

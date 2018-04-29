@@ -10,7 +10,7 @@ public:
 	allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_);
 	~allegro_ctrl();
 
-	void * getEvent(void * data);
+	void * get_event(void * data);
 	bool isThereEvent();
 
 
@@ -18,5 +18,6 @@ private:
 	ALLEGRO_EVENT_QUEUE * eq = NULL;
 	bool validKey(int key);
 	void setEvent(Evnt evento, unsigned int wormID = 0);
-	Ev_t ev[2];
+	Ev_t ev[3];
+	Ev_t retValue[3];
 };
