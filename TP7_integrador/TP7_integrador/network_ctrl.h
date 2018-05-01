@@ -5,6 +5,10 @@
 #include <boost/timer/timer.hpp>
 #include "netData.h"
 #include "paquete.h"
+#include "client.h"
+#include "server.h"
+#include "fsmClient.h"
+#include "fsmServer.h"
 
 #define PUERTO 15667
 #define PUERTO_STR "15667"
@@ -23,37 +27,29 @@ public:
 	void composeAndSend(Ev_t event);
 	bool isThereEvent();
 
+	void loadClient(client* cl);
+	void loadServer(server* sv);
+
 	std::string getName();
 
 private:
 
-	//parametros de boost para el manejo de IO por internet.
-	boost::asio::io_service* IO_handler;
-	boost::asio::ip::tcp::socket* socket;
-	boost::asio::ip::tcp::resolver* resolver;
-	boost::asio::ip::tcp::resolver::iterator endpoint;
-	boost::asio::ip::tcp::acceptor* acceptor;
-
-	package_data pckg;
-	netData * net;
-
-	bool succesfulHandshake;
-	bool timeOut;
-
-
-	void startConnectionForServer(const char * host);
-	void startConnectionForClient();
-	void sendMessage();
-	bool receiveMessage();
-
-	void renewServerItems();
-	void renewClientItems();
-
+	//---Esto sirve---//
 	void setEvent(Evnt evento, unsigned int wormID = 0);
-	
+
 	Ev_t ev[3];
 	Ev_t retValue[3];
 
 	void setName(std::string name);
 	std::string controllerType;
+
+	package_data pckg;
+	netData * net;
+
+
+	//Info de la red//
+	client * netClient;
+	server * netServer;
+	
+
 };

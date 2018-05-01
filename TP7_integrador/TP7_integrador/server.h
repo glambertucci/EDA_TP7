@@ -13,6 +13,7 @@ public:
 	server();
 	void start_to_listen();
 	void sendMessage(char *buf, int size);
+	std::string receiveMessage();
 	std::string wait_for_message();
 	~server();
 
@@ -20,6 +21,8 @@ private:
 	boost::asio::io_service*  IO_handler;
 	boost::asio::ip::tcp::socket* socket_forServer;
 	boost::asio::ip::tcp::acceptor* server_acceptor;
+
+	bool failure;
 };
 
 

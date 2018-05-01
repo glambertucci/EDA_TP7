@@ -24,41 +24,14 @@ Evnt trasformNetworkEvents(char key) //Interpreto los eventos del input de tecla
 
 network_ctrl::network_ctrl(netData * net, std::string name)
 {
-	this->succesfulHandshake = false;;
-	this -> timeOut = false;
-
-
-	this->IO_handler = new boost::asio::io_service();
-	this -> socket = new boost::asio::ip::tcp::socket(*IO_handler);
-	this ->acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler,
-	boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), PUERTO));
-	this -> resolver = new boost::asio::ip::tcp::resolver(*IO_handler);
-
 	this->net = net;
-
 	this->setName(name);
-/*
-	if (this->net->getCurrentMode() == SERVER) {
-		startConnectionForServer("127.0.0.1");
-	}
-	else{
-		startConnectionForClient();
-	}
-	*/
 }
 
 
 
 network_ctrl::~network_ctrl()
 {
-
-	acceptor->close();
-	socket->close();
-	delete resolver;
-	delete acceptor;
-	delete socket;
-	delete IO_handler;
-
 }
 
 
@@ -67,12 +40,19 @@ void * network_ctrl::get_event(void * data) {
 	ev[0].deactivate(); //La posición 0 la uso para input de teclado. La desactivo para recibir una nueva (e indicar que ya se trabajó la anterior)
 	ev[1].deactivate(); //La posición 1 la uso para los eventos de timer, además de cerrar por display. La desactivo pues ya se debe haber procesado el evento anterior en caso de que haya habido uno.
 
-
+	
 	int * size = (int *)data;  //Size es la variable que devolveré, que corresponderá a la cantidad de eventos que cargaré y se deberán trabajar.
 	
-	bool correctInput = receiveMessage();
+	std::string input = ERR_STR;
+	
+	if (this->net->getCurrentMode() == SERVER) {
+	//	input = this->netServer->receiveMessage();
+	}
+	else {
+	//	input = this->netClient->receiveMessage();
+	}
 
-	if (correctInput) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
+	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
 
 		switch (pckg.header) { //Opero según el tipo del evento.
 		case MOVE:
@@ -93,7 +73,6 @@ void * network_ctrl::get_event(void * data) {
 	}
 	*size = counter; //Guardo la cantidad de eventos activos que hay.
 
-
 	return retValue; //Devuelvo la posición de memoria de retValue, pues este método devuelve un puntero a void.
 
 }
@@ -109,6 +88,21 @@ void network_ctrl::setEvent(Evnt evento, unsigned int wormID) {
 	}
 
 }
+
+bool network_ctrl::isThereEvent() {
+
+	return (ev[0].active || ev[1].active);
+
+}
+
+void network_ctrl::setName(std::string name) {
+	this->controllerType = name;
+}
+
+std::string network_ctrl::getName() {
+	return this->controllerType;
+}
+
 
 
 void network_ctrl::composeAndSend(Ev_t event) {
@@ -143,125 +137,23 @@ void network_ctrl::composeAndSend(Ev_t event) {
 	}
 
 	if (event.Event != NOEVENT && event.Event != TIMER_EV) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
-		sendMessage();
-	}
-}
-
-bool network_ctrl::isThereEvent() {
-
-	return (ev[0].active || ev[1].active);
-
-}
-
-void network_ctrl::sendMessage() {
-
-	size_t len;
-	boost::system::error_code error;
-
-	std::string auxString = compose_pkt(this->pckg);
-
-	do
-	{
-		len = this->socket->write_some(boost::asio::buffer(auxString, strlen(compose_pkt(this->pckg).c_str())), error); //Envío un paquete, transformado al formato correspondiente aceptado por boost.
-	} while ((error.value() == WSAEWOULDBLOCK));
-
-	if (error)
-		std::cout << "Error while trying to send message. " << error.message() << std::endl;
-}
-
-bool network_ctrl::receiveMessage() {
-
-	boost::system::error_code error;
-
-	char buf[sizeof(package_data)];		// Por donde recibiré el input. Tamaño de package_data, ya que todo lo que hago al descomponerlo es acomodarlo en un conjunto de chars, pero ocupa lo mismo.
-
-	bool correctInput = false; 
-
-	size_t len = 0;
-
-	do
-	{
-		len = socket->read_some(boost::asio::buffer(buf), error);			//leo el input que me envia la otra maquina
-		if (!error)
-			buf[len] = '\0';					 ///Esto no sé por qué pasa, Tomas lo puso así y el TP funcionaba.		
-
-	} while (error.value() == WSAEWOULDBLOCK);
-
-	std::string auxString;
-
-	if (!error)
-		if (len >= (sizeof(package_data))) {			//Copio la cantidad de caracteres que necesito.
-			for (int i = 0; i < (sizeof(package_data)); i++)
-				auxString[i] = buf[i];							//Cargo el paquete en un string...
-		
-			decompose_data(auxString, this->pckg); //...Y lo coloco en package data.
-			correctInput = checkValidPkgCompos(this->pckg);
+		char * stringConv = &compose_pkt(pckg)[0];
+		if (this->net->getCurrentMode() == SERVER) {
+			netServer->sendMessage( stringConv, sizeof(pckg));
 		}
 		else
-			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
-
-	return correctInput;
-}
-
-
-void network_ctrl::renewServerItems() {
-
-	delete socket;
-	delete IO_handler;
-	delete resolver;
-
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-	IO_handler = new boost::asio::io_service();
-	socket = new boost::asio::ip::tcp::socket(*IO_handler);
-	resolver = new boost::asio::ip::tcp::resolver(*IO_handler);
-}
-
-void network_ctrl::renewClientItems() {
-
-	delete acceptor;
-	delete socket;
-	delete IO_handler;
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	IO_handler = new boost::asio::io_service();
-	socket = new boost::asio::ip::tcp::socket(*IO_handler);
-	acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler,
-		boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), PUERTO));
-}
-
-
-void network_ctrl::setName(std::string name) {
-	this->controllerType = name;
-}
-
-std::string network_ctrl::getName() {
-	return this->controllerType;
-}
-
-void network_ctrl::startConnectionForServer(const char * host) {
-	try {
-
-		endpoint = resolver->resolve(boost::asio::ip::tcp::resolver::query(host, PUERTO_STR));
-
-		boost::asio::connect(*socket, endpoint);
-
-		socket->non_blocking(true);
+			netClient->send_message( stringConv, sizeof(pckg));
 	}
-	catch (std::exception & e) {
-		std::cout << "Error al intentar conectar" << std::endl;
-		net->setIfShouldEnd(true);
-	}
-
 }
 
 
-void network_ctrl::startConnectionForClient() {
+void network_ctrl::loadServer(server * sv)
+{
+	this->netServer = sv;
 
-	renewClientItems();
+}
 
-	acceptor->accept(*socket);
-
-	socket->non_blocking(true);
-
-
+void network_ctrl::loadClient(client * cl)
+{
+	this->netClient = cl;
 }

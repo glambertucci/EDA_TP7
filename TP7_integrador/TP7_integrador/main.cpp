@@ -64,6 +64,11 @@ int main(int argc, char * argv[])
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
 
+		client netClient;
+		server netServer;
+
+		nw_ctrl.loadClient(&netClient);
+		nw_ctrl.loadServer(&netServer);
 
 		while (!stage.isOver()) {
 			eventHandler.getEvent();

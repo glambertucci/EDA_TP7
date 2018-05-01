@@ -18,7 +18,7 @@ class client {
 public:
 	client();
 	void startConnection(const char* host);
-	void receiveMessage(char *ans, int *size, int maxsize);
+	std::string receiveMessage();
 	void send_message(const char *msg, int size);
 	~client();
 	bool success();

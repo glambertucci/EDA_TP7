@@ -2,6 +2,7 @@
 #define _WIN32_WINNT 0x0501
 
 #include "client.h"
+#include "paquete.h"
 #include <string>
 #include <boost/asio.hpp>
 #include <boost/chrono.hpp>
@@ -42,21 +43,30 @@ bool client::success() {
 	return !failure;
 }
 
-void client::receiveMessage(char *ans, int *size, int maxsize) {
+std::string client::receiveMessage() {
+
 	boost::system::error_code error;
-	char buf[1 + 255 + 1];
+	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
+
 	size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
+	
 	if (error) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 		failure = 1;
-		*size = 0;
-		return;
+		return ERR_STR;
 	}
+
+
+	std::string auxString = "";
+
 	for (int i = 0; i < strlen(buf); i++) {
-		ans[i] = buf[i];
+		auxString[i] = buf[i];
 	}
-	ans[strlen(buf)] = '\0';
-	*size = strlen(buf);
+
+	auxString[strlen(buf)] = '\0';
+
+	return auxString;
+
 }
 
 void client::send_message(const char *msg, int size) {

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Net">
-      <UniqueIdentifier>{a8a65b65-f11e-4858-869d-ad2dcc384291}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{8f58fdae-1eca-4856-9a0b-16aaeee8aa87}</UniqueIdentifier>
     </Filter>
@@ -24,9 +21,6 @@
     </Filter>
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{c2c224c0-1152-47c2-96c3-49bb3d6cc946}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Net">
-      <UniqueIdentifier>{cb9cc592-d012-4c6e-b1f5-4b345c4adc55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Miscelanous">
       <UniqueIdentifier>{fc007df3-920c-4db8-ad7f-8a7319ac6902}</UniqueIdentifier>
@@ -73,6 +67,18 @@
     <Filter Include="Source Files\Controllers + Observers\Observer">
       <UniqueIdentifier>{a411833d-66d8-4656-b9d7-e6be4de10691}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\FSM + Net">
+      <UniqueIdentifier>{5dbe7351-11ca-4eea-b746-5fdd964109eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FSM + Net\Net">
+      <UniqueIdentifier>{a8a65b65-f11e-4858-869d-ad2dcc384291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FSM + Net">
+      <UniqueIdentifier>{e0d363dc-5a50-4960-a631-adc9d83dd64a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FSM + Net\Net">
+      <UniqueIdentifier>{cb9cc592-d012-4c6e-b1f5-4b345c4adc55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,10 +94,10 @@
       <Filter>Header Files\Miscelanous\Parser</Filter>
     </ClInclude>
     <ClInclude Include="netData.h">
-      <Filter>Header Files\Net</Filter>
+      <Filter>Header Files\FSM + Net\Net</Filter>
     </ClInclude>
     <ClInclude Include="paquete.h">
-      <Filter>Header Files\Net</Filter>
+      <Filter>Header Files\FSM + Net\Net</Filter>
     </ClInclude>
     <ClInclude Include="bitinit.h">
       <Filter>Header Files\Graphics</Filter>
@@ -100,10 +106,10 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="server.h">
-      <Filter>Header Files\Net</Filter>
+      <Filter>Header Files\FSM + Net\Net</Filter>
     </ClInclude>
     <ClInclude Include="client.h">
-      <Filter>Header Files\Net</Filter>
+      <Filter>Header Files\FSM + Net\Net</Filter>
     </ClInclude>
     <ClInclude Include="general.h">
       <Filter>Header Files\Miscelanous</Filter>
@@ -159,19 +165,19 @@
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="server.cpp">
-      <Filter>Source Files\Net</Filter>
+      <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
     <ClCompile Include="client.cpp">
-      <Filter>Source Files\Net</Filter>
+      <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
     <ClCompile Include="init_arr.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="paquete.cpp">
-      <Filter>Source Files\Net</Filter>
+      <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
     <ClCompile Include="netData.cpp">
-      <Filter>Source Files\Net</Filter>
+      <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
     <ClCompile Include="Worm.cpp">
       <Filter>Source Files\Miscelanous\Worms</Filter>
