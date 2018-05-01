@@ -50,6 +50,8 @@ public:
 			void flipLeft();
 			// Esta funcion forza al worm a mirar a la derecha
 			void flipRight();
+			// Esta función fuerza al Worm a voltearse independientemente de qué dirección esté observando.
+			void flip();
 
 			State getState();
 			Direction getDirection();
@@ -60,6 +62,8 @@ public:
 			// Actualiza al worm. Esta funcion va a llamar a doMove y doJump que son las funciones que se encargan
 			// de mover al worm.
 			void update();
+
+
 		private:
 			void doMove();		//This functions should not be accesible from outside the object as they are only called from update.
 			void doJump();		//To use them ypu should set the state using 'move' and 'jump'

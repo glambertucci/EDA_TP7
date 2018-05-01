@@ -15,21 +15,19 @@ typedef enum { CLIENT, SERVER } mode;
 
 #define LISTEN "escuchar"
 #define START "iniciar"
-
+/*
+netData:
+			netData es una clase que contiene toda la información pertinente al manejo de red, incluyendo lista de IPs, estado (server o client), 
+*/
 class netData {
 public:
 	netData() {
-
 		loadIPs();
-
 		options[0] = IP;
-
 		params[0] = LISTEN;
 		params[1] = START;
-
 		this->end = false;
 		myIP = NOIP;
-
 		currentMode = CLIENT;
 	}
 
@@ -40,22 +38,22 @@ public:
 
 
 	//------Getters------//
-
 	std::string getOwnIP();
-	const char * getOptions(unsigned int i); //Devuelve una opción en una posición dada del  arreglo de opciones.
-	const char * getParams(unsigned int i); //Devuelve una opción en una posición dada del  arreglo de parametros.
+	const char * getOptions(unsigned int i); //Devuelve una opción en una posición dada del arreglo de opciones.
+	const char * getParams(unsigned int i); //Devuelve una opción en una posición dada del arreglo de parametros.
 	unsigned int getIPListSize(); //Devuelve el tamaño del vector.
 	const char * getIPAt(int i); //Devuelve la IP en una posición dada del vector.
 	bool getIfShouldEnd(); //Devuelve si el loop del main debe finalizar
 	mode getCurrentMode(); //Devuelve el modo actual de la maquina (Cliente o server)
 
 private:
+
 	std::string myIP; //La direccion IP de la computadora actual.
 	std::vector<std::string> IPList; //La lista de IPs de todas las máquinas involucradas
 	std::vector<unsigned int> orderList; //El orden en el cual solicitamos que se ejecute la animación entre máquinas.
 	unsigned int orderNumber; //Posición de la IP de esta máquina en la lista de IPs.
 
-	const char * options[OPTION_QTY];
+	const char * options[OPTION_QTY]; //Opciones y parámetros para el parser.
 	const char * params[PARAM_QTY];
 
 	mode currentMode; //Modo actual de esta computadora

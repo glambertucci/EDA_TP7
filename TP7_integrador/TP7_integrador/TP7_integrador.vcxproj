@@ -144,6 +144,7 @@
     <ClInclude Include="netData.h" />
     <ClInclude Include="network_ctrl.h" />
     <ClInclude Include="observer.h" />
+    <ClInclude Include="obs_network.h" />
     <ClInclude Include="obs_stage.h" />
     <ClInclude Include="paquete.h" />
     <ClInclude Include="parseCmdLine.h" />

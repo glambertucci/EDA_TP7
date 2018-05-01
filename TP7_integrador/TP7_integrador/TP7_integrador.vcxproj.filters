@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Parser">
-      <UniqueIdentifier>{32262a5f-e776-4437-ab1a-5ea40b5a16c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Parser">
-      <UniqueIdentifier>{e12fc470-97df-4ff9-97c1-988ade778b9d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Net">
       <UniqueIdentifier>{a8a65b65-f11e-4858-869d-ad2dcc384291}</UniqueIdentifier>
     </Filter>
@@ -43,29 +37,41 @@
     <Filter Include="Resource Files\WormJump">
       <UniqueIdentifier>{85895b7a-270e-4e4e-8475-9737f02225da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Worms">
-      <UniqueIdentifier>{255b982c-0811-4311-a614-4b43149a86d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Observer">
-      <UniqueIdentifier>{a411833d-66d8-4656-b9d7-e6be4de10691}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{22220c8d-952f-4925-828a-e61fcbd26974}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Worms">
-      <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Observer">
-      <UniqueIdentifier>{ffad3ec7-1bfe-4237-9af9-e2abc590d017}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{b69576b7-6fd4-4bac-b1e1-5cd78db5cb40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Events">
       <UniqueIdentifier>{f1d80bc6-99d6-4099-af9b-faf937b6170d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Events">
       <UniqueIdentifier>{2ba18a3e-715e-4ebf-807d-3970ff46af7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscelanous\Parser">
+      <UniqueIdentifier>{32262a5f-e776-4437-ab1a-5ea40b5a16c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Miscelanous\Parser">
+      <UniqueIdentifier>{e12fc470-97df-4ff9-97c1-988ade778b9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers + Observers">
+      <UniqueIdentifier>{8e0a0c61-a3fe-4455-84f2-9c8033530235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers + Observers\Observer">
+      <UniqueIdentifier>{ffad3ec7-1bfe-4237-9af9-e2abc590d017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers + Observers\Controller">
+      <UniqueIdentifier>{b69576b7-6fd4-4bac-b1e1-5cd78db5cb40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Miscelanous\Worms">
+      <UniqueIdentifier>{255b982c-0811-4311-a614-4b43149a86d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscelanous\Worms">
+      <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers + Observers">
+      <UniqueIdentifier>{1341141e-83dc-41e9-a9d4-eaaaea8dd76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers + Observers\Controller">
+      <UniqueIdentifier>{22220c8d-952f-4925-828a-e61fcbd26974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers + Observers\Observer">
+      <UniqueIdentifier>{a411833d-66d8-4656-b9d7-e6be4de10691}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,10 +82,10 @@
       <Filter>Header Files\Miscelanous</Filter>
     </ClInclude>
     <ClInclude Include="parser.h">
-      <Filter>Header Files\Parser</Filter>
+      <Filter>Header Files\Miscelanous\Parser</Filter>
     </ClInclude>
     <ClInclude Include="parseCmdLine.h">
-      <Filter>Header Files\Parser</Filter>
+      <Filter>Header Files\Miscelanous\Parser</Filter>
     </ClInclude>
     <ClInclude Include="netData.h">
       <Filter>Header Files\Net</Filter>
@@ -106,31 +112,34 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>Header Files\Worms</Filter>
+      <Filter>Header Files\Miscelanous\Worms</Filter>
     </ClInclude>
     <ClInclude Include="Worm.h">
-      <Filter>Header Files\Worms</Filter>
+      <Filter>Header Files\Miscelanous\Worms</Filter>
     </ClInclude>
     <ClInclude Include="observer.h">
-      <Filter>Header Files\Observer</Filter>
+      <Filter>Header Files\Controllers + Observers\Observer</Filter>
     </ClInclude>
     <ClInclude Include="obs_stage.h">
-      <Filter>Header Files\Observer</Filter>
+      <Filter>Header Files\Controllers + Observers\Observer</Filter>
     </ClInclude>
     <ClInclude Include="allegro_ctrl.h">
-      <Filter>Header Files\Controller</Filter>
+      <Filter>Header Files\Controllers + Observers\Controller</Filter>
     </ClInclude>
     <ClInclude Include="network_ctrl.h">
-      <Filter>Header Files\Controller</Filter>
+      <Filter>Header Files\Controllers + Observers\Controller</Filter>
     </ClInclude>
     <ClInclude Include="controller.h">
-      <Filter>Header Files\Controller</Filter>
+      <Filter>Header Files\Controllers + Observers\Controller</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="Ev_t.h">
       <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="obs_network.h">
+      <Filter>Header Files\Controllers + Observers\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +150,10 @@
       <Filter>Source Files\Miscelanous</Filter>
     </ClCompile>
     <ClCompile Include="parser.cpp">
-      <Filter>Source Files\Parser</Filter>
+      <Filter>Source Files\Miscelanous\Parser</Filter>
     </ClCompile>
     <ClCompile Include="parseCmdLine.cpp">
-      <Filter>Source Files\Parser</Filter>
+      <Filter>Source Files\Miscelanous\Parser</Filter>
     </ClCompile>
     <ClCompile Include="allegroClass.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -165,19 +174,19 @@
       <Filter>Source Files\Net</Filter>
     </ClCompile>
     <ClCompile Include="Worm.cpp">
-      <Filter>Source Files\Worms</Filter>
+      <Filter>Source Files\Miscelanous\Worms</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>Source Files\Worms</Filter>
+      <Filter>Source Files\Miscelanous\Worms</Filter>
     </ClCompile>
     <ClCompile Include="allegro_ctrl.cpp">
-      <Filter>Source Files\Controller</Filter>
+      <Filter>Source Files\Controllers + Observers\Controller</Filter>
     </ClCompile>
     <ClCompile Include="network_ctrl.cpp">
-      <Filter>Source Files\Controller</Filter>
+      <Filter>Source Files\Controllers + Observers\Controller</Filter>
     </ClCompile>
     <ClCompile Include="obs_stage.cpp">
-      <Filter>Source Files\Observer</Filter>
+      <Filter>Source Files\Controllers + Observers\Observer</Filter>
     </ClCompile>
     <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files\Events</Filter>

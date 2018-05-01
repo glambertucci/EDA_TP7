@@ -4,50 +4,38 @@
 #include "bitinit.h"
 #include <vector>
 #include "observer.h"
-using namespace std;
-/*
-class Stage
-{
-public:
-	Stage();
-	~Stage();
-	void draw();
-	void createWorms(info * data);
-	void loadImages(const char * stage_, const char * backg_);
-	vector<Worm> worms;
-private:
-	ALLEGRO_BITMAP * stageBitmap;
-	ALLEGRO_BITMAP * backgroundBitmap;
-};
-*/
 #include <vector>
 
 using namespace std;
 
 typedef enum ActionType
 {
-	REFRESH_AT, MOVE_LEFT_AT, MOVE_RIGHT_AT, JUMP_AT, FLIP_RIGHT_AT, FLIP_LEFT_AT
+	REFRESH_AT, MOVE_LEFT_AT, MOVE_RIGHT_AT, JUMP_AT, FLIP_RIGHT_AT, FLIP_LEFT_AT, FLIP_AT
 };
 
 class Stage
 {
+
 public:
-	Stage();
-	~Stage();
-	void createWorms(Worm * worm);
+	Stage();	//Constructor
+	~Stage();	//Destructor
+	void createWorms(Worm * worm);	//Crea un worm
 	vector<Worm> * getWorms();
 	void destroyWorm(unsigned int wormID);
 
 	void addObserver(observer * obs);
 
-	void wormMoveLeft(unsigned int wormID);
+	void wormMoveLeft(unsigned int wormID); //Métodos referentes al movimiento de los worms.
 	void wormMoveRight(unsigned int wormID);
 	void wormJump(unsigned int wormID);
 	void wormFlipLeft(unsigned int wormID);
 	void wormFlipRight(unsigned int wormID);
-	void refresh();
+	void wormFlip(unsigned int wormID);
+
+	void refresh(); //Métodos referentes al estado del programa.
 	void quit();
 	bool isOver();
+
 private:
 	vector<Worm> worms;
 	vector<observer *> observers;

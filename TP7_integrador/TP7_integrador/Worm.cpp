@@ -163,3 +163,14 @@ void Worm::update()
 		break;
 	}
 }
+
+void Worm::flip() {
+	Direction currentDir = this->getDirection();
+
+	if (currentDir = RIGHT_DR) {
+		flipLeft();
+	}
+	else {
+		flipRight();
+	}
+}

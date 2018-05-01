@@ -1,43 +1,7 @@
 #include "Stage.h"
 #include "Ev_t.h"
 #include "observer.h"
-/*
-Stage::Stage()
-{
-	this->backgroundBitmap = NULL;
-	this->stageBitmap = NULL;
-}
 
-
-Stage::~Stage()
-{
-	if (this->backgroundBitmap)
-		al_destroy_bitmap(this->backgroundBitmap);
-	if (this->stageBitmap)
-		al_destroy_bitmap(this->stageBitmap);
-
-	for (int i = 0; i < worms.size(); i++)
-		worms.pop_back();
-}
-
-void Stage::draw()
-{
-	al_draw_bitmap(this->backgroundBitmap, 0, 0, 0);
-	al_draw_bitmap(this->stageBitmap, 0, 0, 0);
-}
-
-void Stage::createWorms(info * data)
-{
-	this->worms.push_back(Worm(data)); //Implemented with vectors
-	this->worms.push_back(Worm(data));
-}
-
-void Stage::loadImages(const char * stage_, const char * backg_)
-{
-	this->backgroundBitmap = al_load_bitmap(backg_);
-	this->stageBitmap = al_load_bitmap(stage_);
-}
-*/
 
 unsigned int trasnformIDintoPos(unsigned int wormID);
 
@@ -51,7 +15,7 @@ Stage::Stage()
 }
 
 
-Stage::~Stage()
+Stage::~Stage() //Sacamos a los worms del vector en el cual están almacenados y liberamos esa memoria.
 {
 	for (int i = 0; i < worms.size(); i++)
 		worms.pop_back();
@@ -59,27 +23,27 @@ Stage::~Stage()
 
 
 
-void Stage::createWorms(Worm * worm)
+void Stage::createWorms(Worm * worm) //Metemos a los worms en su vector correspondiente
 {
 	this->worms.push_back(*worm);
 }
 
-vector<Worm>* Stage::getWorms()
+vector<Worm>* Stage::getWorms() //Devuelvo la posición de memoria del vector donde están almacenados los worms.
 {
 	return &worms;
 }
 
-void Stage::destroyWorm(unsigned int wormID)
+void Stage::destroyWorm(unsigned int wormID) //Destruimos un worm
 {
 	worms.erase(worms.begin() + trasnformIDintoPos(wormID));
 }
 
-void Stage::addObserver(observer * obs)
+void Stage::addObserver(observer * obs) //Agregamos un observer al vector de observers.
 {
 	observers.push_back(obs);
 }
 
-void Stage::wormMoveLeft(unsigned int wormID)
+void Stage::wormMoveLeft(unsigned int wormID) 
 {
 	worms[trasnformIDintoPos(wormID)].move(LEFT_DR);
 	lastAction = MOVE_LEFT_AT;
@@ -103,6 +67,12 @@ void Stage::wormFlipLeft(unsigned int wormID)
 	lastAction = FLIP_LEFT_AT;
 }
 
+void Stage::wormFlip(unsigned int wormID)
+{
+	worms[trasnformIDintoPos(wormID)].flip();
+	lastAction = FLIP_AT;
+}
+
 void Stage::wormFlipRight(unsigned int wormID)
 {
 	worms[trasnformIDintoPos(wormID)].flipRight();
@@ -119,18 +89,18 @@ void Stage::refresh()
 
 }
 
-void Stage::quit()
+void Stage::quit() //Pone al miembro "leave" en verdadero, para indicar la finalización del programa.
 {
 	leave = true;
 }
 
-bool Stage::isOver()
+bool Stage::isOver() //Usado en Ifs para verificar el valor del miembro leave.
 {
 	return leave;
 }
 
-void Stage::update()
+void Stage::update() //Le pido a todo observer en el vector de observers que hagan un update.
 {
-	for (observer * obs : observers)
+	for (observer * obs : observers) 
 		obs->update(this);
 }
