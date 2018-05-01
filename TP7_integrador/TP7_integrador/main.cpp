@@ -56,8 +56,6 @@ int main(int argc, char * argv[])
 		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
 		stage.addObserver(&obstage);
 
-		// Falta el observer de network y cargarlo 
-		
 		
 		// Worms
 		WormData wormData; 
@@ -65,6 +63,7 @@ int main(int argc, char * argv[])
 		stage.createWorms(&worm1); //...Y lo meto en el vector de worms del escenario.
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
+
 
 		while (!stage.isOver()) {
 			eventHandler.getEvent();

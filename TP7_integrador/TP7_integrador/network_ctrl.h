@@ -41,11 +41,10 @@ private:
 	bool timeOut;
 
 
-	//void startConnectionForServer(const char * host);
-	//void startConnectionForClient();
+	void startConnectionForServer(const char * host);
+	void startConnectionForClient();
 	void sendMessage();
 	bool receiveMessage();
-	//void parseMessage();
 
 	void renewServerItems();
 	void renewClientItems();

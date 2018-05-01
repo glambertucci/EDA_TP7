@@ -75,9 +75,10 @@ void EventHandler::displatchEvent(Ev_t & ev, Stage& stage)
 
 void EventHandler::HandleEventDispatch(Stage& stage)
 {
+	sendLocal(); //Meto los eventos locales en paquetes y los envío a la otra computadora.
+
 	while (events.size()) { //Mientras queden eventos por trabajar, repetiré el loop.
 		displatchEvent(*events.begin(), stage); //Llamo al verdadero dispatcher. Le paso el primer evento de la lista y el escenario.
-		sendLocal();
 		events.pop_front(); //Elimino el evento que acabo de trabajar.
 	}
 }

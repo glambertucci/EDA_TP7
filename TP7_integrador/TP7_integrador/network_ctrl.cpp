@@ -37,7 +37,16 @@ network_ctrl::network_ctrl(netData * net, std::string name)
 	this->net = net;
 
 	this->setName(name);
+/*
+	if (this->net->getCurrentMode() == SERVER) {
+		startConnectionForServer("127.0.0.1");
+	}
+	else{
+		startConnectionForClient();
+	}
+	*/
 }
+
 
 
 network_ctrl::~network_ctrl()
@@ -51,6 +60,7 @@ network_ctrl::~network_ctrl()
 	delete IO_handler;
 
 }
+
 
 void * network_ctrl::get_event(void * data) {
 
@@ -82,6 +92,7 @@ void * network_ctrl::get_event(void * data) {
 			retValue[counter++] = ev[i]; //Aquellos que estén activos son copiados en retValue para trabajarlos luego.
 	}
 	*size = counter; //Guardo la cantidad de eventos activos que hay.
+
 
 	return retValue; //Devuelvo la posición de memoria de retValue, pues este método devuelve un puntero a void.
 
@@ -176,7 +187,6 @@ bool network_ctrl::receiveMessage() {
 
 	} while (error.value() == WSAEWOULDBLOCK);
 
-
 	std::string auxString;
 
 	if (!error)
@@ -189,43 +199,10 @@ bool network_ctrl::receiveMessage() {
 		}
 		else
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+
+	return correctInput;
 }
 
-
-/* void network_ctrl::startConnectionForServer(const char * host) {
-
-	this->net->setCurrentMode(SERVER);
-	renewServerItems();
-	try {
-
-		endpoint = resolver->resolve(boost::asio::ip::tcp::resolver::query(host, PUERTO_STR));
-
-		boost::asio::connect(*socket, endpoint);
-
-		socket->non_blocking(true);
-	}
-	catch (std::exception & e) {
-		std::cout << "Error al intentar conectar" << std::endl;
-		net->setIfShouldEnd(true);
-	}
-
-} */
-
-
-/*
-void network_ctrl::startConnectionForClient() {
-
-
-this->net->setCurrentMode(CLIENT);
-renewClientItems();
-
-acceptor->accept(*socket);
-
-socket->non_blocking(true);
-
-
-}
-*/
 
 void network_ctrl::renewServerItems() {
 
@@ -259,4 +236,32 @@ void network_ctrl::setName(std::string name) {
 
 std::string network_ctrl::getName() {
 	return this->controllerType;
+}
+
+void network_ctrl::startConnectionForServer(const char * host) {
+	try {
+
+		endpoint = resolver->resolve(boost::asio::ip::tcp::resolver::query(host, PUERTO_STR));
+
+		boost::asio::connect(*socket, endpoint);
+
+		socket->non_blocking(true);
+	}
+	catch (std::exception & e) {
+		std::cout << "Error al intentar conectar" << std::endl;
+		net->setIfShouldEnd(true);
+	}
+
+}
+
+
+void network_ctrl::startConnectionForClient() {
+
+	renewClientItems();
+
+	acceptor->accept(*socket);
+
+	socket->non_blocking(true);
+
+
 }
