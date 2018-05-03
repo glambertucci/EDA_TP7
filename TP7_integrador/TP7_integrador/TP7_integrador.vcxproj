@@ -163,6 +163,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="netData.cpp" />
     <ClCompile Include="network_ctrl.cpp" />
+    <ClCompile Include="obs_network.cpp" />
     <ClCompile Include="obs_stage.cpp" />
     <ClCompile Include="paquete.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />

@@ -197,6 +197,9 @@
     <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
+    <ClCompile Include="obs_network.cpp">
+      <Filter>Source Files\Controllers + Observers\Observer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Worms Images\Scenario.png">
