@@ -1,12 +1,15 @@
 #include "handshake.h"
 
+using namespace std;
+
 bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 {
 	package_data data;
 	data.clean();
 	string packet;
-	if (what == SERVER)// server is true
+	if (what == SERVER)
 	{
+		cout << "im server!"<<endl;
 		server * sv = (server *)who;
 		sv->start_to_listen();
 		data.header = I_AM_READY;
@@ -16,7 +19,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 		packet.clear();
 		packet = sv->receiveMessage();
 		decompose_data(packet, data);
-
+		cout << "received stuff" << endl;
 		if (data.header == I_AM_READY)
 		{
 			w2.setX(data.x_coord);
@@ -31,6 +34,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 	}
 	else
 	{
+		cout << "im client!" << endl;
 		client * cl = (client*)who;
 		cl->startConnection(ip.c_str());
 		cl->receiveMessage();

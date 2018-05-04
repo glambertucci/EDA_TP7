@@ -6,4 +6,3 @@
 #include "netData.h"
 //Who? Client or server pointer , What? defines client or server
 bool handshake(void * who, mode what, string ip, Worm& w1, Worm& w2);
-//What, 1 server 0 client
