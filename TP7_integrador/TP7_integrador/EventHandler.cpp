@@ -61,12 +61,12 @@ Ev_t * EventHandler::returnEvent(int * size)
 void EventHandler::displatchEvent(Ev_t & ev, Stage& stage)
 {
 	switch (ev.Event) {
-	case LEFT_EV: stage.wormMoveLeft(ev.wormID); break;
-	case RIGHT_EV: stage.wormMoveRight(ev.wormID); break;
-	case JUMP_EV: stage.wormJump(ev.wormID); break;
-	case FLIP_RIGHT_EV: stage.wormFlipRight(ev.wormID); break;
-	case FLIP_LEFT_EV: stage.wormFlipLeft(ev.wormID); break;
-	case FLIP_EV: stage.wormFlip(ev.wormID); break;
+	case LEFT_EV:  stage.wormMoveLeft(ev.wormID); stage.refresh(); break;
+	case RIGHT_EV: stage.wormMoveRight(ev.wormID); stage.refresh(); break;
+	case JUMP_EV: stage.wormJump(ev.wormID); stage.refresh(); break;
+	case FLIP_RIGHT_EV: stage.wormFlipRight(ev.wormID); stage.refresh(); break;
+	case FLIP_LEFT_EV: stage.wormFlipLeft(ev.wormID); stage.refresh(); break;
+	case FLIP_EV: stage.wormFlip(ev.wormID); stage.refresh(); break;
 	case QUIT_EV: stage.quit(); break;
 	case TIMER_EV: stage.refresh();	break;
 	}

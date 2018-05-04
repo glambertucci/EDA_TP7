@@ -32,12 +32,12 @@ void obs_network::composeAndSend(Ev_t event) {
 	}
 	else if (event.Event == LEFT_EV) {
 		pckg.header = MOVE;
-		pckg.action = 'D';
+		pckg.action = 'I';
 		pckg.id_worm = Wid2;
 	}
 	else if (event.Event == RIGHT_EV) {
 		pckg.header = MOVE;
-		pckg.action = 'I';
+		pckg.action = 'D';
 		pckg.id_worm = Wid2;
 	}
 	else if (event.Event == QUIT_EV) {

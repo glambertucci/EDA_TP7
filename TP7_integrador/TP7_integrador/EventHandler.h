@@ -20,9 +20,6 @@ public:
 	bool areThereActiveEvents();
 	Ev_t * returnEvent(int * size); 
 	void HandleEventDispatch(Stage& stage);
-	void sendLocal();
-	controller * searchForController(std::string controllerType);
-	void removeEvent(list<Ev_t>::iterator it);
 
 	list<Ev_t> * getEventList() { return &(this->events); }
 
