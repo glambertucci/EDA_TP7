@@ -103,10 +103,6 @@ std::string network_ctrl::getName() {
 	return this->controllerType;
 }
 
-<<<<<<< HEAD
-=======
-
-
 void network_ctrl::composeAndSend(Ev_t event) {
 
 	/*Esta función compone el paquete según el tipo de evento recibido
@@ -149,8 +145,6 @@ void network_ctrl::composeAndSend(Ev_t event) {
 	}
 }
 
-
->>>>>>> 2c3155a277d459940e6a62cfc75fc27dbcf5c4fe
 void network_ctrl::loadServer(server * sv)
 {
 	this->netServer = sv;

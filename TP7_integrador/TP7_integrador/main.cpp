@@ -50,10 +50,10 @@ int main(int argc, char * argv[])
 		//Controllers
 		EventHandler eventHandler; //eventHandler me permitirá administrar múltiples controllers.
 		allegro_ctrl al_ctrl(allegroTools.getEventQueue(), ALLEGROCONT);
-		//network_ctrl nw_ctrl(&net, NETWORKCONT);
+		network_ctrl nw_ctrl(&net, NETWORKCONT);
 
 		eventHandler.loadController(&al_ctrl);
-		//eventHandler.loadController(&nw_ctrl);
+		eventHandler.loadController(&nw_ctrl);
 
 		//Observer
 		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
@@ -67,16 +67,9 @@ int main(int argc, char * argv[])
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
 
-<<<<<<< HEAD
 		nw_ctrl.loadClient(net.getClient());
 		nw_ctrl.loadServer(net.getServer());
-=======
-		client netClient;
-		server netServer;
 
-		//nw_ctrl.loadClient(&netClient);
-		//nw_ctrl.loadServer(&netServer);
->>>>>>> 2c3155a277d459940e6a62cfc75fc27dbcf5c4fe
 
 		while (!stage.isOver()) {
 			eventHandler.getEvent();

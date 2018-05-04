@@ -7,10 +7,7 @@
 #include "paquete.h"
 #include "client.h"
 #include "server.h"
-<<<<<<< HEAD
-=======
 
->>>>>>> 2c3155a277d459940e6a62cfc75fc27dbcf5c4fe
 
 #define PUERTO 15667
 #define PUERTO_STR "15667"
