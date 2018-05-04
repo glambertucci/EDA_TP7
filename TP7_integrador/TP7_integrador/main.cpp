@@ -76,9 +76,9 @@ int main(int argc, char * argv[])
 		void * whoAmI = NULL;
 
 		if (net.getCurrentMode() == SERVER)
-			whoAmI = net.getServer();
+			whoAmI = (void *)net.getServer();
 		else
-			whoAmI = net.getClient();
+			whoAmI = (void *)net.getClient();
 
 
 		if (handshake(whoAmI, net.getCurrentMode(), net.getOwnIP(), worm1, worm2)) {

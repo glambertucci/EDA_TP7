@@ -16,6 +16,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 		packet.clear();
 		packet = sv->receiveMessage();
 		decompose_data(packet, data);
+
 		if (data.header == I_AM_READY)
 		{
 			w2.setX(data.x_coord);

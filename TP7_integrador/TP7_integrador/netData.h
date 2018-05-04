@@ -31,8 +31,8 @@ public:
 		this->end = false;
 		myIP = NOIP;
 		currentMode = CLIENT;
-		server * netServer = sv;
-		client * netClient = cl;
+		this ->netServer = sv;
+		this ->netClient = cl;
 	}
 
 	//------Setters------//
