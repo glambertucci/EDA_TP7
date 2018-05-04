@@ -36,7 +36,10 @@
 
 int main(int argc, char * argv[])
 {
-	netData net; //Objeto que contiene información sobre las computadoras en la red.
+	client netClient;
+	server netServer;
+
+	netData net(&netServer, &netClient); //Objeto que contiene información sobre las computadoras en la red.
 	if ((argc > 1 && argc <= MAX_INPUT_SIZE) && (parseCmdLine(argc, argv, &parseCallback, &net) != ERRORPARSE)) //Evaluación de los parámetros. Si son correctos se continúa con el programa, de lo contrario pasamos a imprimir el mensaje de error.
 	{
 		Stage stage;
@@ -56,19 +59,16 @@ int main(int argc, char * argv[])
 		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
 		stage.addObserver(&obstage);
 
-		
+
 		// Worms
-		WormData wormData; 
+		WormData wormData;
 		Worm worm1(&wormData); //Creo un worm...
 		stage.createWorms(&worm1); //...Y lo meto en el vector de worms del escenario.
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
 
-		client netClient;
-		server netServer;
-
-		nw_ctrl.loadClient(&netClient);
-		nw_ctrl.loadServer(&netServer);
+		nw_ctrl.loadClient(net.getClient());
+		nw_ctrl.loadServer(net.getServer());
 
 		while (!stage.isOver()) {
 			eventHandler.getEvent();
@@ -77,12 +77,12 @@ int main(int argc, char * argv[])
 		}
 
 
-//		info data;
+		//		info data;
 
-//		array< char[14], WALKPICS> walk = fillWalk("wwalk-F", ".png");
-//		array<char[14], JUMPPICS> jump = fillJump("wjump-F", ".png");
+		//		array< char[14], WALKPICS> walk = fillWalk("wwalk-F", ".png");
+		//		array<char[14], JUMPPICS> jump = fillJump("wjump-F", ".png");
 
-//		data.load(walk, jump);
+		//		data.load(walk, jump);
 
 	}
 	else

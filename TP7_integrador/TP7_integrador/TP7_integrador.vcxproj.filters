@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{c2c224c0-1152-47c2-96c3-49bb3d6cc946}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Miscelanous">
-      <UniqueIdentifier>{fc007df3-920c-4db8-ad7f-8a7319ac6902}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\WormWalk">
       <UniqueIdentifier>{23291611-6de6-43db-86b9-18a569fc2743}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
     <Filter Include="Source Files\Events">
       <UniqueIdentifier>{2ba18a3e-715e-4ebf-807d-3970ff46af7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Miscelanous\Parser">
-      <UniqueIdentifier>{32262a5f-e776-4437-ab1a-5ea40b5a16c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Miscelanous\Parser">
       <UniqueIdentifier>{e12fc470-97df-4ff9-97c1-988ade778b9d}</UniqueIdentifier>
@@ -54,9 +48,6 @@
     </Filter>
     <Filter Include="Header Files\Miscelanous\Worms">
       <UniqueIdentifier>{255b982c-0811-4311-a614-4b43149a86d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Miscelanous\Worms">
-      <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Controllers + Observers">
       <UniqueIdentifier>{1341141e-83dc-41e9-a9d4-eaaaea8dd76f}</UniqueIdentifier>
@@ -78,6 +69,15 @@
     </Filter>
     <Filter Include="Source Files\FSM + Net\Net">
       <UniqueIdentifier>{cb9cc592-d012-4c6e-b1f5-4b345c4adc55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscellaneous">
+      <UniqueIdentifier>{fc007df3-920c-4db8-ad7f-8a7319ac6902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscellaneous\Parser">
+      <UniqueIdentifier>{32262a5f-e776-4437-ab1a-5ea40b5a16c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Miscellaneous\Worms">
+      <UniqueIdentifier>{773f1d24-4b48-4789-9fb2-a7522fca4bba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,13 +153,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="timer.cpp">
-      <Filter>Source Files\Miscelanous</Filter>
+      <Filter>Source Files\Miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="parser.cpp">
-      <Filter>Source Files\Miscelanous\Parser</Filter>
+      <Filter>Source Files\Miscellaneous\Parser</Filter>
     </ClCompile>
     <ClCompile Include="parseCmdLine.cpp">
-      <Filter>Source Files\Miscelanous\Parser</Filter>
+      <Filter>Source Files\Miscellaneous\Parser</Filter>
     </ClCompile>
     <ClCompile Include="allegroClass.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -180,10 +180,10 @@
       <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
     <ClCompile Include="Worm.cpp">
-      <Filter>Source Files\Miscelanous\Worms</Filter>
+      <Filter>Source Files\Miscellaneous\Worms</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>Source Files\Miscelanous\Worms</Filter>
+      <Filter>Source Files\Miscellaneous\Worms</Filter>
     </ClCompile>
     <ClCompile Include="allegro_ctrl.cpp">
       <Filter>Source Files\Controllers + Observers\Controller</Filter>

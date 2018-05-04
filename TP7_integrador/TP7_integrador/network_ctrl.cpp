@@ -103,50 +103,6 @@ std::string network_ctrl::getName() {
 	return this->controllerType;
 }
 
-
-
-void network_ctrl::composeAndSend(Ev_t event) {
-
-	/*Esta función compone el paquete según el tipo de evento recibido
-	y luego lo envía a la otra computadora. */
-
-	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
-		pckg.header = MOVE;
-		pckg.action = 'T';
-		pckg.id_worm = Wid2;
-	}
-	else if (event.Event == JUMP_EV) {
-		pckg.header = MOVE;
-		pckg.action = 'J';
-		pckg.id_worm = Wid2;
-	}
-	else if (event.Event == LEFT_EV) {
-		pckg.header = MOVE;
-		pckg.action = 'D';
-		pckg.id_worm = Wid2;
-	}
-	else if (event.Event == RIGHT_EV) {
-		pckg.header = MOVE;
-		pckg.action = 'I';
-		pckg.id_worm = Wid2;
-	}
-	else if (event.Event == QUIT_EV) {
-		pckg.header = QUIT;
-		pckg.action = NULL;
-		pckg.id_worm = NULL;
-	}
-
-	if (event.Event != NOEVENT && event.Event != TIMER_EV) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
-		char * stringConv = &compose_pkt(pckg)[0];
-		if (this->net->getCurrentMode() == SERVER) {
-			netServer->sendMessage( stringConv, sizeof(pckg));
-		}
-		else
-			netClient->send_message( stringConv, sizeof(pckg));
-	}
-}
-
-
 void network_ctrl::loadServer(server * sv)
 {
 	this->netServer = sv;

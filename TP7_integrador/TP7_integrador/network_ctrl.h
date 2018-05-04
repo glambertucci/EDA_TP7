@@ -7,8 +7,6 @@
 #include "paquete.h"
 #include "client.h"
 #include "server.h"
-#include "fsmClient.h"
-#include "fsmServer.h"
 
 #define PUERTO 15667
 #define PUERTO_STR "15667"

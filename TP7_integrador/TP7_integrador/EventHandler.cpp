@@ -75,34 +75,9 @@ void EventHandler::displatchEvent(Ev_t & ev, Stage& stage)
 
 void EventHandler::HandleEventDispatch(Stage& stage)
 {
-	sendLocal(); //Meto los eventos locales en paquetes y los envío a la otra computadora.
 
 	while (events.size()) { //Mientras queden eventos por trabajar, repetiré el loop.
 		displatchEvent(*events.begin(), stage); //Llamo al verdadero dispatcher. Le paso el primer evento de la lista y el escenario.
 		events.pop_front(); //Elimino el evento que acabo de trabajar.
 	}
-}
-
-void EventHandler::sendLocal() {
-
-	if (network_ctrl * cont = (network_ctrl *) searchForController(NETWORKCONT)) { //Busco si existe un controlador de red y, si no, no ejecuto esta porción del programa.
-		for (Ev_t ev : events) { //Reviso cada evento y, si su origen es local, mando una copia por red.
-			if (ev.origin == LOCAL && ev.active) { //Solo envío aquellos eventos locales activos.
-				cont->composeAndSend(ev);
-			}
-		}
-	}
-}
-
-
-controller * EventHandler::searchForController(std::string controllerName) {
-	
-	controller * retValue;
-	
-	for (controller * cont : controllers) {
-		if (cont->getName() == controllerName) {
-			return cont;
-		}
-	}
-	return NULL;
 }

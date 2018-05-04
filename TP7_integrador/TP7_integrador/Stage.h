@@ -5,6 +5,8 @@
 #include <vector>
 #include "observer.h"
 #include <vector>
+#include "Ev_t.h"
+#include <list>
 
 using namespace std;
 
@@ -36,10 +38,17 @@ public:
 	void quit();
 	bool isOver();
 
+	//-----setters-----//
+	void setEventList(list<Ev_t> * list) { this->events = list; }
+	list<Ev_t> * getEventList() { return this->events; }
+
+
+
 private:
 	vector<Worm> worms;
 	vector<observer *> observers;
 	ActionType lastAction;
+	list<Ev_t> * events; //Vector con los eventos a trabajar.
 	void update();
 	bool leave = false;
 };

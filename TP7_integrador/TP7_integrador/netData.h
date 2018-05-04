@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "server.h"
+#include "client.h"
 
 #define OPTION_QTY 1
 #define PARAM_QTY 2
@@ -21,7 +23,7 @@ netData:
 */
 class netData {
 public:
-	netData() {
+	netData(server * sv, client * cl) {
 		loadIPs();
 		options[0] = IP;
 		params[0] = LISTEN;
@@ -29,22 +31,27 @@ public:
 		this->end = false;
 		myIP = NOIP;
 		currentMode = CLIENT;
+		server * netServer = sv;
+		client * netClient = cl;
 	}
 
 	//------Setters------//
-	void setOwnIP(unsigned int i);
-	void setIfShouldEnd(bool shouldI);
-	void setCurrentMode(mode newMode);
+	void setOwnIP(unsigned int i) { this->myIP = this->IPList.at(i); }
+	void setIfShouldEnd(bool shouldI) { this->end = shouldI; }
+	void setCurrentMode(mode newMode) { this->currentMode = newMode; }
 
 
 	//------Getters------//
-	std::string getOwnIP();
-	const char * getOptions(unsigned int i); //Devuelve una opción en una posición dada del arreglo de opciones.
-	const char * getParams(unsigned int i); //Devuelve una opción en una posición dada del arreglo de parametros.
-	unsigned int getIPListSize(); //Devuelve el tamaño del vector.
-	const char * getIPAt(int i); //Devuelve la IP en una posición dada del vector.
-	bool getIfShouldEnd(); //Devuelve si el loop del main debe finalizar
-	mode getCurrentMode(); //Devuelve el modo actual de la maquina (Cliente o server)
+	std::string getOwnIP() { return this->myIP; }
+	const char * getIPAt(int i) { return this->IPList.at(i).c_str(); } //Devuelve la IP en una posición dada del vector.
+	const char * getOptions(unsigned int i) { return this->options[i]; } //Devuelve una opción en una posición dada del arreglo de opciones.
+	const char * getParams(unsigned int i) { return this->params[i]; }//Devuelve una opción en una posición dada del arreglo de parametros.
+	unsigned int getIPListSize() { return this->IPList.size(); } //Devuelve el tamaño del vector.
+	bool getIfShouldEnd() { return this->end; } //Devuelve si el loop del main debe finalizar
+	mode getCurrentMode() { return this->currentMode; } //Devuelve el modo actual de la maquina (Cliente o server)
+	server * getServer() { return netServer; }
+	client * getClient() { return netClient; }
+	
 
 private:
 
@@ -53,11 +60,16 @@ private:
 	std::vector<unsigned int> orderList; //El orden en el cual solicitamos que se ejecute la animación entre máquinas.
 	unsigned int orderNumber; //Posición de la IP de esta máquina en la lista de IPs.
 
-	const char * options[OPTION_QTY]; //Opciones y parámetros para el parser.
-	const char * params[PARAM_QTY];
-
 	mode currentMode; //Modo actual de esta computadora
 	bool end; //¿Debería terminar la ejecución del programa?
+
+
+	//Modificados solo en el cosntructor//
+	const char * options[OPTION_QTY]; //Opciones y parámetros para el parser.
+	const char * params[PARAM_QTY];
+	server * netServer;
+	client * netClient;
+
 
 	void loadIPs();
 

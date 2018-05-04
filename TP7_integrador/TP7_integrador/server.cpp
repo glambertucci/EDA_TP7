@@ -25,7 +25,7 @@ void server::start_to_listen() {
 	this->server_acceptor->accept(*(this->socket_forServer));
 }
 
-void server::sendMessage(char *buf, int size) {
+void server::sendMessage(const char *buf, int size) {
 
 	size_t len;
 	boost::system::error_code error;

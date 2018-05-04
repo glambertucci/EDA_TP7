@@ -1,25 +1,57 @@
 #include "obs_network.h"
+#include "Stage.h"
 
-void obs_network::sendLocal() {
-											//Esta es la llamada a la funcion que requiere al vector de comtrollers
-	if (network_ctrl * cont = (network_ctrl *)searchForController(NETWORKCONT)) { //Busco si existe un controlador de red y, si no, no ejecuto esta porción del programa.
-		for (Ev_t ev : events) { //Reviso cada evento y, si su origen es local, mando una copia por red.
-			if (ev.origin == LOCAL && ev.active) { //Solo envío aquellos eventos locales activos.
-				cont->composeAndSend(ev);
-			}
+void obs_network::update(void * stage) { //sendLocal() para los amigos
+
+	this->events = ((Stage *)stage)->getEventList();
+
+
+	for (Ev_t ev : *events) { //Reviso cada evento y, si su origen es local, mando una copia por red.
+		if (ev.origin == LOCAL && ev.active) { //Solo envío aquellos eventos locales activos.
+			this->composeAndSend(ev);
 		}
 	}
 }
 
-controller * obs_network::searchForController(std::string controllerName) {
-	for (controller * cont : controllers) {
-		if (cont->getName() == controllerName) {
-			return cont;
-		}
+void obs_network::composeAndSend(Ev_t event) {
+
+	/*Esta función compone el paquete según el tipo de evento recibido
+	y luego lo envía a la otra computadora. */
+
+	package_data pckg;
+
+	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
+		pckg.header = MOVE;
+		pckg.action = 'T';
+		pckg.id_worm = Wid2;
 	}
-	return NULL;
-}
+	else if (event.Event == JUMP_EV) {
+		pckg.header = MOVE;
+		pckg.action = 'J';
+		pckg.id_worm = Wid2;
+	}
+	else if (event.Event == LEFT_EV) {
+		pckg.header = MOVE;
+		pckg.action = 'D';
+		pckg.id_worm = Wid2;
+	}
+	else if (event.Event == RIGHT_EV) {
+		pckg.header = MOVE;
+		pckg.action = 'I';
+		pckg.id_worm = Wid2;
+	}
+	else if (event.Event == QUIT_EV) {
+		pckg.header = QUIT;
+		pckg.action = NULL;
+		pckg.id_worm = NULL;
+	}
 
-void obs_network::update(void) {
-
+	if (event.Event != NOEVENT && event.Event != TIMER_EV) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
+		string stringConv = compose_pkt(pckg);
+		if (this->net->getCurrentMode() == SERVER) {
+			net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
+		}
+		else
+			net->getClient()->send_message(stringConv.c_str(), stringConv.length());
+	}
 }
