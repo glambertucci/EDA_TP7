@@ -18,9 +18,8 @@ std::string server::wait_for_message() {
 }
 
 void server::start_to_listen() {
-	server_acceptor->accept(*socket_forServer);
-
 	std::cout << "Waiting for somebody to connect.. :( " << std::endl;
+	server_acceptor->accept(*socket_forServer);
 	socket_forServer->non_blocking(true);
 	this->server_acceptor->accept(*(this->socket_forServer));
 }
