@@ -7,7 +7,7 @@ void obs_network::update(void * stage) { //sendLocal() para los amigos
 
 
 	for (Ev_t ev : * events) { //Reviso cada evento y, si su origen es local, mando una copia por red.
-		if (ev.origin == LOCAL && ev.active) { //Solo envío aquellos eventos locales activos.
+		if (ev.origin == LOCAL && ev.active && (ev.Event != TIMER_EV)) { //Solo envío aquellos eventos locales activos.
 			this->composeAndSend(ev);
 		}
 	}
