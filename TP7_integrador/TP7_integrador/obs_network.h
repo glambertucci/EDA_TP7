@@ -11,6 +11,7 @@ public:
 	void sendLocal(void);
 private:
 	controller * searchForController(std::string controllerType);
+	//Podemos hacer que sea un vector de eventos normales en vez del vector de controllers
 	vector<controller *> controllers; //Vector con los controllers activos, a través de los cuales obtengo eventos.
 	list<Ev_t> events; //Vector con los eventos a trabajar.
 };
