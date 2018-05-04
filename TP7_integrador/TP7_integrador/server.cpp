@@ -29,7 +29,7 @@ void server::sendMessage(const char *buf, int size) {
 	size_t len;
 	boost::system::error_code error;
 
-	this->socket_forServer->non_blocking(true);
+//	this->socket_forServer->non_blocking(true);
 
 	do {
 		len = socket_forServer->write_some(boost::asio::buffer(buf, size), error);
@@ -43,8 +43,9 @@ std::string server::receiveMessage() {
 
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-
-	size_t len = socket_forServer->read_some(boost::asio::buffer(buf), error);
+	do {
+		size_t len = socket_forServer->read_some(boost::asio::buffer(buf), error);
+	} while (error);
 
 	if (error) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;

@@ -47,9 +47,9 @@ std::string client::receiveMessage() {
 
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-
-	size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
-	
+	do {
+		size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
+	} while (error);
 	if (error) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 		failure = 1;
