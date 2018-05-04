@@ -29,6 +29,7 @@
 
 //---Observers---//
 #include "obs_stage.h"
+#include "obs_network.h"
 #include "observer.h"
 
 #define MAX_INPUT_SIZE 4 // Nombre del programa + "-IP" + [La IP] + iniciar/escuchar (según).
@@ -58,8 +59,10 @@ int main(int argc, char * argv[])
 		eventHandler.loadController(&nw_ctrl);
 
 		//Observer
+		obs_network obsnet(&net);
 		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
 		stage.addObserver(&obstage);
+		stage.addObserver(&obsnet);
 
 
 		// Worms
