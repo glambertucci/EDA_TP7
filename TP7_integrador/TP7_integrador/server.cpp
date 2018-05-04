@@ -40,11 +40,11 @@ void server::sendMessage(const char *buf, int size) {
 }
 
 std::string server::receiveMessage() {
-
+	size_t len;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 	do {
-		size_t len = socket_forServer->read_some(boost::asio::buffer(buf), error);
+		 len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 	} while (error);
 
 	if (error) {

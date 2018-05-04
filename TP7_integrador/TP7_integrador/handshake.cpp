@@ -45,6 +45,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 			data.clean();
 			packet.clear();
 			data.header = I_AM_READY;
+			data.x_coord = w2.getX();
 			packet = compose_pkt(data);
 			cl->send_message(packet.c_str(), packet.length());
 			packet.clear();
