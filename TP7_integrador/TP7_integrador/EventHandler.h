@@ -24,6 +24,8 @@ public:
 	controller * searchForController(std::string controllerType);
 	void removeEvent(list<Ev_t>::iterator it);
 
+	list<Ev_t> * getEventList() { return &(this->events); }
+
 
 private:
 	void displatchEvent(Ev_t& ev, Stage& stage);

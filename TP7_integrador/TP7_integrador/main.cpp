@@ -71,7 +71,7 @@ int main(int argc, char * argv[])
 		stage.createWorms(&worm1); //...Y lo meto en el vector de worms del escenario.
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
-
+		stage.setEventList(eventHandler.getEventList());
 
 		nw_ctrl.loadClient(net.getClient());
 		nw_ctrl.loadServer(net.getServer());
