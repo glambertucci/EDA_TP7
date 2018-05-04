@@ -56,6 +56,7 @@ public:
 			State getState();
 			Direction getDirection();
 			float getX();
+			void setX(float Xcoord);
 			float getY();
 			int getTicks();
 

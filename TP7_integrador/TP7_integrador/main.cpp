@@ -47,10 +47,10 @@ int main(int argc, char * argv[])
 		//Controllers
 		EventHandler eventHandler; //eventHandler me permitirá administrar múltiples controllers.
 		allegro_ctrl al_ctrl(allegroTools.getEventQueue(), ALLEGROCONT);
-		network_ctrl nw_ctrl(&net, NETWORKCONT);
+		//network_ctrl nw_ctrl(&net, NETWORKCONT);
 
 		eventHandler.loadController(&al_ctrl);
-		eventHandler.loadController(&nw_ctrl);
+		//eventHandler.loadController(&nw_ctrl);
 
 		//Observer
 		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
@@ -67,8 +67,8 @@ int main(int argc, char * argv[])
 		client netClient;
 		server netServer;
 
-		nw_ctrl.loadClient(&netClient);
-		nw_ctrl.loadServer(&netServer);
+		//nw_ctrl.loadClient(&netClient);
+		//nw_ctrl.loadServer(&netServer);
 
 		while (!stage.isOver()) {
 			eventHandler.getEvent();

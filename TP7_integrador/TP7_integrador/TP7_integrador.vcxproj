@@ -140,6 +140,7 @@
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Ev_t.h" />
     <ClInclude Include="general.h" />
+    <ClInclude Include="handshake.h" />
     <ClInclude Include="init_arr.h" />
     <ClInclude Include="netData.h" />
     <ClInclude Include="network_ctrl.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="allegro_ctrl.cpp" />
     <ClCompile Include="client.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="handshake.cpp" />
     <ClCompile Include="init_arr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="netData.cpp" />

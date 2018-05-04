@@ -137,12 +137,13 @@ void network_ctrl::composeAndSend(Ev_t event) {
 	}
 
 	if (event.Event != NOEVENT && event.Event != TIMER_EV) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
-		char * stringConv = &compose_pkt(pckg)[0];
+		
+		string stringConv = compose_pkt(pckg);
 		if (this->net->getCurrentMode() == SERVER) {
-			netServer->sendMessage( stringConv, sizeof(pckg));
+			netServer->sendMessage( stringConv.c_str(), stringConv.length());
 		}
 		else
-			netClient->send_message( stringConv, sizeof(pckg));
+			netClient->send_message( stringConv.c_str(), stringConv.length());
 	}
 }
 

@@ -147,6 +147,9 @@
     <ClInclude Include="obs_network.h">
       <Filter>Header Files\Controllers + Observers\Observer</Filter>
     </ClInclude>
+    <ClInclude Include="handshake.h">
+      <Filter>Header Files\FSM + Net\Net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -199,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="obs_network.cpp">
       <Filter>Source Files\Controllers + Observers\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="handshake.cpp">
+      <Filter>Source Files\FSM + Net\Net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

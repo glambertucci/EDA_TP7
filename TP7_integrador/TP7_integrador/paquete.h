@@ -2,7 +2,7 @@
 
 #include <string>
 #include <cstdint>
-
+#define EMPTY (-1)
 #define ERR_STR "ERR"
 #define PKGSIZE 8 //Tamaño del paquete en bytes. (Se necesita constante y aparte sizeof devuelve 12 para la estructura, pero 8 para la suma de los miembros individuales, que es lo que nos importa).
 
@@ -12,6 +12,13 @@ public:
 	uint8_t action;//un byte, las acciones son D,I,J,T
 	uint32_t id_worm;//Id worm 4bytes
 	uint16_t x_coord;//Solo es pasada en el primer imready
+	void clean()
+	{
+		header = EMPTY;
+		action = EMPTY;
+		id_worm = EMPTY;
+		x_coord = EMPTY;
+	}
 }  package_data;
 
 #define I_AM_READY 0x20

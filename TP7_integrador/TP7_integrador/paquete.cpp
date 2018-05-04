@@ -10,8 +10,8 @@ std::string move_compose(package_data data);
 std::string quit_compose(package_data data);
 std::string error_compose(package_data data);
 //util
-std::string switchendianfier(uint16_t param);
-std::string switchendianfier(uint32_t param);
+std::string switchendianfier(uint16_t *param);
+std::string switchendianfier(uint32_t *param);
 //decompose
 void ack_decompose(package_data& mydata, std::string a);
 void imr_decompose(package_data& mydata, std::string a);

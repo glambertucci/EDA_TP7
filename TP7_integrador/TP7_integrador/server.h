@@ -12,7 +12,7 @@ class server {
 public:
 	server();
 	void start_to_listen();
-	void sendMessage(char *buf, int size);
+	void sendMessage(const char *buf, int size);
 	std::string receiveMessage();
 	std::string wait_for_message();
 	~server();
