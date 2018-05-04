@@ -1,6 +1,6 @@
 #include "Worm.h"
 #include <math.h>
-
+#include <cstdlib>
 
 
 using namespace std;
@@ -12,7 +12,7 @@ using namespace std;
 Worm::Worm(WormData * data, float xoffset_, Direction dir)
 {
 	this->data = data;
-	this->coord.x = this->data->minX + xoffset_;
+	this->coord.x = (data->minX +( rand() % (int) xoffset_));
 	this->coord.y = this->data->minY;
 	this->direction = dir;
 	this->state = STILL_ST;
@@ -20,7 +20,10 @@ Worm::Worm(WormData * data, float xoffset_, Direction dir)
 	this->ticks = 0;
 }
 
-
+void Worm::setX(float Xcoord)
+{
+	this->coord.x = Xcoord;
+}
 Worm::~Worm()
 {
 }
