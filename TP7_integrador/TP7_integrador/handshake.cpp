@@ -37,7 +37,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 		cout << "im client!" << endl;
 		client * cl = (client*)who;
 		cl->startConnection(ip.c_str());
-		cl->receiveMessage();
+		packet = cl->receiveMessage();
 		decompose_data(packet, data);
 		if (data.header == I_AM_READY)
 		{

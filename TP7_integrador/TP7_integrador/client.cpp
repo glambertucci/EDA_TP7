@@ -59,11 +59,9 @@ std::string client::receiveMessage() {
 
 	std::string auxString = "";
 
-	for (int i = 0; i < strlen(buf); i++) {
-		auxString[i] = buf[i];
+	for (int i = 0; (i < strlen(buf)); i++) {
+		auxString += buf[i];
 	}
-
-	auxString[strlen(buf)] = '\0';
 
 	return auxString;
 

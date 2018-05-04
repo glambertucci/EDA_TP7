@@ -120,7 +120,7 @@ void imr_decompose(package_data& mydata, std::string a) {
 	int16_t num;
 	int8_t * arr = (int8_t *)&num;
 	for (int i = 0; i < 2; i++)
-		arr[0] = a[3 - i]; //lo recibo en big endian
+		arr[i] = a[2 - i]; //lo recibo en big endian
 	mydata.x_coord = num;
 }
 void move_decompose(package_data& mydata, std::string a) {
