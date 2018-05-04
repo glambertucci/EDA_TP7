@@ -70,6 +70,7 @@ std::string imr_compose(package_data data)
 	uint8_t * pxc=(uint8_t *) &(data.x_coord);
 	pkt += (*(pxc + 1));
 	pkt += (*pxc);
+	pkt += '\0';
 	return pkt;
 }
 std::string quit_compose(package_data data)
