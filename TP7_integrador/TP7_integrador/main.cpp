@@ -91,15 +91,6 @@ int main(int argc, char * argv[])
 		else
 			cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;
 
-
-
-		//		info data;
-
-		//		array< char[14], WALKPICS> walk = fillWalk("wwalk-F", ".png");
-		//		array<char[14], JUMPPICS> jump = fillJump("wjump-F", ".png");
-
-		//		data.load(walk, jump);
-
 	}
 	else
 		cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;

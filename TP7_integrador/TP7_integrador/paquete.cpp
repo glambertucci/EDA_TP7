@@ -67,7 +67,9 @@ std::string imr_compose(package_data data)
 {
 	string pkt;
 	pkt += data.header;
-	pkt += switchendianfier(&data.x_coord);
+	uint8_t * pxc=(uint8_t *) &(data.x_coord);
+	pkt += (*(pxc + 1));
+	pkt += (*pxc);
 	return pkt;
 }
 std::string quit_compose(package_data data)
@@ -118,7 +120,7 @@ void imr_decompose(package_data& mydata, std::string a) {
 	int16_t num;
 	int8_t * arr = (int8_t *)&num;
 	for (int i = 0; i < 2; i++)
-		arr[0] = a[4 - i]; //lo recibo en big endian
+		arr[0] = a[3 - i]; //lo recibo en big endian
 	mydata.x_coord = num;
 }
 void move_decompose(package_data& mydata, std::string a) {
