@@ -1,11 +1,11 @@
 #include "handshake.h"
 
-bool handshake(void * who, bool what, netData net, Worm& w1,Worm& w2)
+bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 {
 	package_data data;
 	data.clean();
 	string packet;
-	if (what)// server is true
+	if (what == SERVER)// server is true
 	{
 		server * sv = (server *)who;
 		sv->start_to_listen();
@@ -31,7 +31,7 @@ bool handshake(void * who, bool what, netData net, Worm& w1,Worm& w2)
 	else
 	{
 		client * cl = (client*)who;
-		cl->startConnection((net.getOwnIP()).c_str());
+		cl->startConnection(ip.c_str());
 		cl->receiveMessage();
 		decompose_data(packet, data);
 		if (data.header == I_AM_READY)

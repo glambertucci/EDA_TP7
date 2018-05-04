@@ -17,6 +17,7 @@
 //--Miscellanous--//
 #include "general.h"
 #include "EventHandler.h"
+#include "handshake.h"
 
 //-----Worms-----//
 #include "Stage.h"
@@ -40,6 +41,7 @@ int main(int argc, char * argv[])
 	server netServer;
 
 	netData net(&netServer, &netClient); //Objeto que contiene información sobre las computadoras en la red.
+
 	if ((argc > 1 && argc <= MAX_INPUT_SIZE) && (parseCmdLine(argc, argv, &parseCallback, &net) != ERRORPARSE)) //Evaluación de los parámetros. Si son correctos se continúa con el programa, de lo contrario pasamos a imprimir el mensaje de error.
 	{
 		Stage stage;
@@ -67,15 +69,28 @@ int main(int argc, char * argv[])
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
 
+
 		nw_ctrl.loadClient(net.getClient());
 		nw_ctrl.loadServer(net.getServer());
 
+		void * whoAmI = NULL;
 
-		while (!stage.isOver()) {
-			eventHandler.getEvent();
-			if (eventHandler.areThereActiveEvents()) //Si hay eventos activos, procedo al dispatcher. De lo contrario, sigo esperando eventos.
-				eventHandler.HandleEventDispatch(stage);
+		if (net.getCurrentMode() == SERVER)
+			whoAmI = net.getServer();
+		else
+			whoAmI = net.getClient();
+
+
+		if (handshake(whoAmI, net.getCurrentMode(), net.getOwnIP(), worm1, worm2)) {
+			while (!stage.isOver()) {
+				eventHandler.getEvent();
+				if (eventHandler.areThereActiveEvents()) //Si hay eventos activos, procedo al dispatcher. De lo contrario, sigo esperando eventos.
+					eventHandler.HandleEventDispatch(stage);
+			}
 		}
+		else
+			cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;
+
 
 
 		//		info data;
