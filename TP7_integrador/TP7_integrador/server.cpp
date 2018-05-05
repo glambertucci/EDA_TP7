@@ -10,6 +10,7 @@ std::string server::wait_for_message() {
 	std::string res;
 	boost::system::error_code error;
 	char buf[sizeof(package_data)];
+	this->socket_forServer->non_blocking(true);
 	do {
 		this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	} while ((error.value() == WSAEWOULDBLOCK));

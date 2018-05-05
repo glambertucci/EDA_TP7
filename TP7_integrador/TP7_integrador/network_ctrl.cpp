@@ -46,10 +46,10 @@ void * network_ctrl::get_event(void * data) {
 	std::string input = ERR_STR;
 	
 	if (this->net->getCurrentMode() == SERVER) {
-	//	input = this->netServer->receiveMessage();
+		input = this->netServer->receiveMessage();
 	}
 	else {
-	//	input = this->netClient->receiveMessage();
+		input = this->netClient->receiveMessage();
 	}
 
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
