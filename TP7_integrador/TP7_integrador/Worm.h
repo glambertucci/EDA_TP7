@@ -37,6 +37,10 @@ typedef enum State {
 	STILL_ST, MOVE_ST, JUMP_ST
 };
 
+typedef enum WormN {
+	WORMS, WORMC
+};
+
 class Worm
 {
 public:

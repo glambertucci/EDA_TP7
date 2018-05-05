@@ -1,5 +1,6 @@
 #pragma once
 
+#include "allegro_ctrl.h"
 #include <string>
 #include <vector>
 #include <fstream>
@@ -17,6 +18,10 @@ typedef enum { CLIENT, SERVER } mode;
 
 #define LISTEN "escuchar"
 #define START "iniciar"
+
+
+
+
 /*
 netData:
 			netData es una clase que contiene toda la información pertinente al manejo de red, incluyendo lista de IPs, estado (server o client), 
@@ -72,5 +77,4 @@ private:
 
 
 	void loadIPs();
-
 };

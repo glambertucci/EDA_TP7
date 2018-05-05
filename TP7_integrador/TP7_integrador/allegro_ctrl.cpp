@@ -1,4 +1,5 @@
 #include "allegro_ctrl.h"
+#include "Worm.h"
 
 Evnt trasformAllegroEvents(int key) //Interpreto los eventos del input de teclado para generar un evento de mi programa.
 {
@@ -21,9 +22,10 @@ Evnt trasformAllegroEvents(int key) //Interpreto los eventos del input de teclad
 	return ev;
 }
 
-allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_, std::string name){  //Asigno a mi miembro "eq" la dirección de la cola de eventos de Allegro.
+allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_, std::string name, netData * netdata){  //Asigno a mi miembro "eq" la dirección de la cola de eventos de Allegro.
 	this->eq = eq_;
 	setName(name);
+	this->net = netdata;
 }
 
 void * allegro_ctrl::get_event(void * data)
@@ -32,6 +34,13 @@ void * allegro_ctrl::get_event(void * data)
 	ev[1].deactivate(); //La posición 1 la uso para los eventos de timer, además de cerrar por display. La desactivo pues ya se debe haber procesado el evento anterior en caso de que haya habido uno.
 
 	ALLEGRO_EVENT alEv;
+	
+	WormN Wid = WORMC;
+
+	if (net->getCurrentMode() == CLIENT)
+		Wid = WORMC;
+	else
+		Wid = WORMS;
 
 	int * size = (int *)data;  //Size es la variable que devolveré, que corresponderá a la cantidad de eventos que cargaré y se deberán trabajar.
 

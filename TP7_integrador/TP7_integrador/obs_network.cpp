@@ -18,27 +18,35 @@ void obs_network::composeAndSend(Ev_t event) {
 	/*Esta función compone el paquete según el tipo de evento recibido
 	y luego lo envía a la otra computadora. */
 
+
+	WormN Wid = WORMC;
+
+	if (net->getCurrentMode() == CLIENT)
+		Wid = WORMC;	
+	else
+		Wid = WORMS;
+
 	package_data pckg;
 
 	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
 		pckg.header = MOVE;
 		pckg.action = 'T';
-		pckg.id_worm = Wid2;
+		pckg.id_worm = Wid;
 	}
 	else if (event.Event == JUMP_EV) {
 		pckg.header = MOVE;
 		pckg.action = 'J';
-		pckg.id_worm = Wid2;
+		pckg.id_worm = Wid;
 	}
 	else if (event.Event == LEFT_EV) {
 		pckg.header = MOVE;
 		pckg.action = 'I';
-		pckg.id_worm = Wid2;
+		pckg.id_worm = Wid;
 	}
 	else if (event.Event == RIGHT_EV) {
 		pckg.header = MOVE;
 		pckg.action = 'D';
-		pckg.id_worm = Wid2;
+		pckg.id_worm = Wid;
 	}
 	else if (event.Event == QUIT_EV) {
 		pckg.header = QUIT;

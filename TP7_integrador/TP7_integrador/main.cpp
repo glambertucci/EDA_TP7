@@ -52,7 +52,7 @@ int main(int argc, char * argv[])
 
 		//Controllers
 		EventHandler eventHandler; //eventHandler me permitirá administrar múltiples controllers.
-		allegro_ctrl al_ctrl(allegroTools.getEventQueue(), ALLEGROCONT);
+		allegro_ctrl al_ctrl(allegroTools.getEventQueue(), ALLEGROCONT, &net);
 		network_ctrl nw_ctrl(&net, NETWORKCONT);
 
 		eventHandler.loadController(&al_ctrl);

@@ -5,9 +5,6 @@
 #define ALLEGROCONT "allegro"
 #define NETWORKCONT "network"
 
-#define Wid 1
-#define Wid2 2
-
 class controller
 {
 public:
