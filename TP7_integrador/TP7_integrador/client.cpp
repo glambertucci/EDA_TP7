@@ -55,7 +55,6 @@ std::string client::receiveMessage() {
 		time.stop();
 		if (time.getTime() > 50)
 			break;
-		else time.start();
 	} while ((error.value() == WSAEWOULDBLOCK));
 
 	//do {
@@ -65,20 +64,25 @@ std::string client::receiveMessage() {
 	//do {
 	//	size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
 	//} while (error);
-	if (error) {
-		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
-		failure = 1;
-		return ERR_STR;
+	if (time.getTime() < 50) {
+		if (error) {
+			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+			failure = 1;
+			return ERR_STR;
+		}
+
+
+		std::string auxString = "";
+
+		for (int i = 0; (i < strlen(buf)); i++) {
+			auxString += buf[i];
+		}
+		return auxString;
 	}
 
+	return NOPACKAGE;
 
-	std::string auxString = "";
 
-	for (int i = 0; (i < strlen(buf)); i++) {
-		auxString += buf[i];
-	}
-
-	return auxString;
 
 }
 

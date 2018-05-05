@@ -12,6 +12,8 @@
 
 #include "timer.h"
 
+#define NOPACKAGE "N"
+
 using namespace std;
 
 class client {
