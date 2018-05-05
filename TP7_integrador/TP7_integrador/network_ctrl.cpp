@@ -35,6 +35,8 @@ network_ctrl::~network_ctrl()
 }
 
 
+
+
 void * network_ctrl::get_event(void * data) {
 
 	ev[0].deactivate(); //La posición 0 la uso para input de teclado. La desactivo para recibir una nueva (e indicar que ya se trabajó la anterior)
@@ -46,11 +48,11 @@ void * network_ctrl::get_event(void * data) {
 	std::string input = ERR_STR;
 	
 	if (this->net->getCurrentMode() == SERVER) {
-	//	input = this->netServer->receiveMessage();
+		input = this->netServer->receiveMessage();
 	}
 
 	else {
-	//	input = this->netClient->receiveMessage();
+		input = this->netClient->receiveMessage();
 	}
 
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
