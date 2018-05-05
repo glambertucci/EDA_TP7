@@ -1,5 +1,6 @@
 #include "server.h"
 #include "paquete.h"
+#include "timer.h"
 #include <string>
 #include <iostream>
 
@@ -51,9 +52,16 @@ std::string server::receiveMessage() {
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 
+	Timer time;
+	time.start();
 	do {
-		len = this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
-	} while ((error.value() == WSAEWOULDBLOCK));
+	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
+	} while ((error.value() == WSAEWOULDBLOCK) && (time.getTime()<50));
+	time.stop();
+
+	//do {
+	//	len = this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
+	//} while ((error.value() == WSAEWOULDBLOCK));
 	//do {
 	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 

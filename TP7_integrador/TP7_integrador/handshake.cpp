@@ -54,7 +54,8 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 			decompose_data(packet, data);
 			if (data.header == ACKS) {  
 				cl->nonblock();
-				return true; }
+				return true; 
+			}
 			else return false;
 		}
 		else return false;
