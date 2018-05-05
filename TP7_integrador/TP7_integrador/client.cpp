@@ -47,7 +47,7 @@ std::string client::receiveMessage() {
 
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-	this->socket_forClient->non_blocking(true);
+	//this->socket_forClient->non_blocking(true);
 	do {
 		this->socket_forClient->read_some(boost::asio::buffer(buf, 30), error);
 	} while ((error.value() == WSAEWOULDBLOCK));
@@ -71,6 +71,10 @@ std::string client::receiveMessage() {
 
 }
 
+void client::nonblock(void)
+{
+	this->socket_forClient->non_blocking(true);
+}
 void client::send_message(const char *msg, int size) {
 	size_t len;
 	boost::system::error_code error;

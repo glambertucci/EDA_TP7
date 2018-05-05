@@ -28,6 +28,7 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 			packet.clear();
 			packet = compose_pkt(data);
 			sv->sendMessage(packet.c_str(), packet.length());
+			sv->nonblock();
 			return true;
 		}
 		else return false;
@@ -51,7 +52,9 @@ bool handshake(void * who, mode what, string ip, Worm& w1,Worm& w2)
 			packet.clear();
 			packet = cl->receiveMessage();
 			decompose_data(packet, data);
-			if (data.header == ACKS) { return true; }
+			if (data.header == ACKS) {  
+				cl->nonblock();
+				return true; }
 			else return false;
 		}
 		else return false;

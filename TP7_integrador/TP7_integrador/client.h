@@ -22,6 +22,7 @@ public:
 	void send_message(const char *msg, int size);
 	~client();
 	bool success();
+	void nonblock();
 
 private:
 	boost::asio::io_service* IO_handler;

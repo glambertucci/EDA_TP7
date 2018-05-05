@@ -48,6 +48,7 @@ void * network_ctrl::get_event(void * data) {
 	if (this->net->getCurrentMode() == SERVER) {
 		input = this->netServer->receiveMessage();
 	}
+
 	else {
 		input = this->netClient->receiveMessage();
 	}

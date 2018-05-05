@@ -15,6 +15,7 @@ public:
 	void sendMessage(const char *buf, int size);
 	std::string receiveMessage();
 	std::string wait_for_message();
+	void nonblock();
 	~server();
 
 private:

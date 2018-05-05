@@ -10,7 +10,7 @@ std::string server::wait_for_message() {
 	std::string res;
 	boost::system::error_code error;
 	char buf[sizeof(package_data)];
-	this->socket_forServer->non_blocking(true);
+
 	do {
 		this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	} while ((error.value() == WSAEWOULDBLOCK));
@@ -40,6 +40,10 @@ void server::sendMessage(const char *buf, int size) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 }
 
+void server::nonblock(void)
+{
+	this->socket_forServer->non_blocking(true);
+}
 std::string server::receiveMessage() {
 
 
@@ -47,11 +51,13 @@ std::string server::receiveMessage() {
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 
-
 	do {
-		len = socket_forServer->read_some(boost::asio::buffer(buf), error);
+		len = this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
+	} while ((error.value() == WSAEWOULDBLOCK));
+	//do {
+	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 
-	} while (error);
+	//} while (error);
 
 	if (error) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
