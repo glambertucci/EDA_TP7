@@ -5,7 +5,7 @@
 #include "boost/asio.hpp"
 #include "boost/function.hpp"
 #include "boost/bind.hpp"
-
+#define NOPACKAGE "N"
 
 
 class server {

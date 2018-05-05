@@ -54,7 +54,8 @@ void * network_ctrl::get_event(void * data) {
 	}
 
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
-
+		if(input != NOPACKAGE)
+		{
 		switch (pckg.header) { //Opero según el tipo del evento.
 		case MOVE:
 					this->setEvent(trasformNetworkEvents(pckg.action), pckg.id_worm); //...Entonces interpreto el input y lo introduzco en ev[0]
@@ -65,6 +66,7 @@ void * network_ctrl::get_event(void * data) {
 			break;
 			}
 		}
+	}
 
 	int counter = 0;
 	for (int i = 0; i<3; i++) //Me fijo cuantos eventos están activos con un contador.

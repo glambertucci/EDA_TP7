@@ -57,8 +57,9 @@ std::string server::receiveMessage() {
 	do {
 	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	time.stop();
-	if (time.getTime() > 50)
+	if (time.getTime() > 100)
 		break;
+	else time.start();
 	} while ((error.value() == WSAEWOULDBLOCK) );
 	//time.stop();
 
@@ -69,20 +70,25 @@ std::string server::receiveMessage() {
 	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 
 	//} while (error);
+	if(time.getTime()<100)
+	{
+		if (error) {
+			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+			failure = 1;
+			return ERR_STR;
+		}
+		else {
+			std::string auxString = "";
 
-	if (error) {
-		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
-		failure = 1;
-		return ERR_STR;
+			for (int i = 0; i < len; i++) {
+				auxString += buf[i];
+			}
+
+			return auxString;
+		}
 	}
+	else return NOPACKAGE;
 
-	std::string auxString = "";
-
-	for (int i = 0; i < len; i++) {
-		 auxString += buf[i];
-	}
-
-	return auxString;
 }
 
 server::server() {
