@@ -1,6 +1,5 @@
 #pragma once
 
-#include "allegro_ctrl.h"
 #include <string>
 #include <vector>
 #include <fstream>

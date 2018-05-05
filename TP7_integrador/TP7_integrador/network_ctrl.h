@@ -7,7 +7,7 @@
 #include "paquete.h"
 #include "client.h"
 #include "server.h"
-
+#include <cstdint>
 
 #define PUERTO 15667
 #define PUERTO_STR "15667"
@@ -34,7 +34,7 @@ public:
 private:
 
 	//---Esto sirve---//
-	void setEvent(Evnt evento, unsigned int wormID = 0);
+	void setEvent(Evnt evento, uint32_t wormID);
 
 	Ev_t ev[3];
 	Ev_t retValue[3];

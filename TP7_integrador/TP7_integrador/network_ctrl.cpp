@@ -80,7 +80,7 @@ void * network_ctrl::get_event(void * data) {
 
 }
 
-void network_ctrl::setEvent(Evnt evento, unsigned int wormID) {
+void network_ctrl::setEvent(Evnt evento, uint32_t wormID) {
 
 
 	if (evento == FLIP_EV) {

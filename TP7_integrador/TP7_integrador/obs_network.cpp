@@ -19,7 +19,7 @@ void obs_network::composeAndSend(Ev_t event) {
 	y luego lo envía a la otra computadora. */
 
 
-	WormN Wid = WORMC;
+	uint32_t Wid = WORMC;
 
 	if (net->getCurrentMode() == CLIENT)
 		Wid = WORMC;	

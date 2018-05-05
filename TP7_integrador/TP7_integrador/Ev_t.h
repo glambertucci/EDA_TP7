@@ -1,5 +1,6 @@
 #pragma once
 #include "timer.h"
+#include "Worm.h"
 // Este enum tiene todos los eventos posibles que puede recibir el programa. Si se quiere usar este EventHandler en otro programa solo habraiq eu cambiar 
 // esta parte y un poco del codigo en el .cpp
 typedef enum Evnt {
@@ -16,7 +17,7 @@ typedef struct {
 	Timer * time = NULL;
 	evOrigin origin;
 	bool active;
-	unsigned int wormID;
+	uint32_t wormID;
 	int keycode;
 	bool keyPressed = true;
 

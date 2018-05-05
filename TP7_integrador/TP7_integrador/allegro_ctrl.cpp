@@ -22,10 +22,17 @@ Evnt trasformAllegroEvents(int key) //Interpreto los eventos del input de teclad
 	return ev;
 }
 
-allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_, std::string name, netData * netdata){  //Asigno a mi miembro "eq" la dirección de la cola de eventos de Allegro.
+allegro_ctrl::allegro_ctrl(ALLEGRO_EVENT_QUEUE * eq_, std::string name, mode currMode){  //Asigno a mi miembro "eq" la dirección de la cola de eventos de Allegro.
 	this->eq = eq_;
 	setName(name);
-	this->net = netdata;
+
+	if (currMode == CLIENT) {
+		this->localWorm = WORMC;
+	}
+	else
+	{
+		this->localWorm = WORMS;
+	}
 }
 
 void * allegro_ctrl::get_event(void * data)
@@ -35,12 +42,6 @@ void * allegro_ctrl::get_event(void * data)
 
 	ALLEGRO_EVENT alEv;
 	
-	WormN Wid = WORMC;
-
-	if (net->getCurrentMode() == CLIENT)
-		Wid = WORMC;
-	else
-		Wid = WORMS;
 
 	int * size = (int *)data;  //Size es la variable que devolveré, que corresponderá a la cantidad de eventos que cargaré y se deberán trabajar.
 
@@ -57,7 +58,7 @@ void * allegro_ctrl::get_event(void * data)
 			}
 			else
 				if (!ev[0].active && validKey(alEv.keyboard.keycode) && !ev[0].timerExist()) //Si la posición 0, correspondiente a input de teclado, está desactivada y tambien lo está su timer...
-					setEvent(trasformAllegroEvents(alEv.keyboard.keycode), Wid); //...Entonces interpreto el input y lo introduzco en ev[0].
+					setEvent(trasformAllegroEvents(alEv.keyboard.keycode), this->localWorm); //...Entonces interpreto el input y lo introduzco en ev[0].
 			break;
 		case ALLEGRO_EVENT_KEY_UP: // Si solté una tecla...
 			if (ev[0].timerExist() && ev[0].Event == trasformAllegroEvents(alEv.keyboard.keycode)) { //...Si hay un timer y la tecla que solté es la misma que presioné antes...
@@ -77,7 +78,7 @@ void * allegro_ctrl::get_event(void * data)
 				break;
 
 		case ALLEGRO_EVENT_TIMER:
-			this->setEvent(TIMER_EV);
+			this->setEvent(TIMER_EV, this->localWorm);
 			ev[1].activate(); //Indico que hubo un evento del timer.
 
 
@@ -128,7 +129,7 @@ allegro_ctrl::~allegro_ctrl()
 }
 
 
-void allegro_ctrl::setEvent(Evnt evento, unsigned int wormID) {
+void allegro_ctrl::setEvent(Evnt evento, uint32_t wormID) {
 
 
 	if (evento != TIMER_EV) {
