@@ -8,13 +8,14 @@ Evnt trasformNetworkEvents(char key) //Interpreto los eventos del input de tecla
 	switch (key)
 	{
 	case 'I':
-		ev = LEFT_EV;
+		ev = LEFT_EV; 
 		break;
 	case 'D':
 		ev = RIGHT_EV;
 		break;
 	case 'J':
 		ev = JUMP_EV;
+		break;
 	case 'T':
 		ev = FLIP_EV;
 		break;
@@ -50,14 +51,15 @@ void * network_ctrl::get_event(void * data) {
 	if (this->net->getCurrentMode() == SERVER) {
 		input = this->netServer->receiveMessage();
 	}
-
 	else {
 		input = this->netClient->receiveMessage();
 	}
 
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
+
 		if(input != NOPACKAGE)
 		{
+		decompose_data(input, pckg);
 		switch (pckg.header) { //Opero según el tipo del evento.
 		case MOVE:
 					this->setEvent(trasformNetworkEvents(pckg.action), pckg.id_worm); //...Entonces interpreto el input y lo introduzco en ev[0]

@@ -9,6 +9,8 @@
 #include <boost/timer/timer.hpp>
 #include <boost/exception_ptr.hpp> 
 #include "server.h"
+#include "general.h"
+
 const string CLIENT_PORT = "15667";
 
 client::client() {
@@ -53,7 +55,7 @@ std::string client::receiveMessage() {
 	do {
 		this->socket_forClient->read_some(boost::asio::buffer(buf, 30), error);
 		time.stop();
-		if (time.getTime() > 50)
+		if (time.getTime() > TIMEOUT)
 			break;
 	} while ((error.value() == WSAEWOULDBLOCK));
 
@@ -65,7 +67,7 @@ std::string client::receiveMessage() {
 	//	size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
 	//} while (error);
 
-	if (time.getTime() < 50)
+	if (time.getTime() < TIMEOUT)
 	{
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;

@@ -130,7 +130,7 @@ void move_decompose(package_data& mydata, std::string a) {
 	int32_t num;
 	int8_t * arr = (int8_t *)&num;
 	for (int i = 0; i < 4; i++)
-		arr[0] = a[5 - i]; //lo recibo en big endian
+		arr[i] = a[5 - i]; //lo recibo en big endian
 	mydata.id_worm = num;
 }
 
