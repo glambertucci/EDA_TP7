@@ -3,6 +3,7 @@
 #include "timer.h"
 #include <string>
 #include <iostream>
+#include "general.h"
 
 const int HELLO_PORT = 15667;
 
@@ -58,7 +59,7 @@ std::string server::receiveMessage() {
 	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	time.stop();
 
-	if (time.getTime() > 50)
+	if (time.getTime() > TIMEOUT)
 		break;
 	} while ((error.value() == WSAEWOULDBLOCK) );
 	//time.stop();
@@ -70,7 +71,7 @@ std::string server::receiveMessage() {
 	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 
 	//} while (error);
-	if(time.getTime()<50)
+	if(time.getTime()<TIMEOUT)
 	{
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;

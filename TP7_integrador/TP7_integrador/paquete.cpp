@@ -32,7 +32,9 @@ std::string switchendianfier(uint32_t * param)
 	uint8_t pp[4];
 	for (int i = 0; i < 4; i++)
 		pp[3 - i] = *((uint8_t *) param + i); //Aprovechamos el casteo de punteros para descomponer el ID y rearmarlo en el string.
-	string a = (char *)pp;
+	string a;
+	for (int i=0;i<4;i++)
+		a += pp[i];
 	return a;
 }
 
@@ -60,7 +62,13 @@ std::string move_compose(package_data data){
 	string pkt;
 	pkt+= data.header;
 	pkt += data.action;
-	pkt += switchendianfier(&data.id_worm);
+	//pkt += switchendianfier(&data.id_worm);
+	uint8_t pp[4];
+	for (int i = 0; i < 4; i++)
+		pp[3 - i] = *((uint8_t *)(&data.id_worm) + i); //Aprovechamos el casteo de punteros para descomponer el ID y rearmarlo en el string.
+	for (int i = 0; i<4; i++)
+		pkt += pp[i];
+	
 	return pkt;
 }
 std::string imr_compose(package_data data)

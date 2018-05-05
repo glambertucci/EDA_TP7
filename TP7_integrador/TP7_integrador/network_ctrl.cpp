@@ -58,6 +58,7 @@ void * network_ctrl::get_event(void * data) {
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
 		if(input != NOPACKAGE)
 		{
+			decompose_data(input, pckg);
 		switch (pckg.header) { //Opero según el tipo del evento.
 		case MOVE:
 					this->setEvent(trasformNetworkEvents(pckg.action), pckg.id_worm); //...Entonces interpreto el input y lo introduzco en ev[0]
