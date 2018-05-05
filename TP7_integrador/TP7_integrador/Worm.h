@@ -37,8 +37,8 @@ typedef enum State {
 	STILL_ST, MOVE_ST, JUMP_ST
 };
 
-#define WORMS 1
-#define WORMC 2
+#define WORMS 0
+#define WORMC 1
 
 class Worm
 {

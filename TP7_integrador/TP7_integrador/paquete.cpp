@@ -100,6 +100,7 @@ std::string acks_compose(package_data data)
 void decompose_data(std::string a, package_data& mydata)
 {
 	mydata.header = a[0];
+
 	switch (mydata.header)
 	{
 	case ACK:
