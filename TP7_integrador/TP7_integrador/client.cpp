@@ -8,9 +8,7 @@
 #include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
 #include <boost/exception_ptr.hpp> 
-#include "server.h"
 #include "general.h"
-
 const string CLIENT_PORT = "15667";
 
 client::client() {
