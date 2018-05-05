@@ -35,6 +35,8 @@ network_ctrl::~network_ctrl()
 }
 
 
+
+
 void * network_ctrl::get_event(void * data) {
 
 	ev[0].deactivate(); //La posición 0 la uso para input de teclado. La desactivo para recibir una nueva (e indicar que ya se trabajó la anterior)

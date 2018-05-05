@@ -59,7 +59,6 @@ void * allegro_ctrl::get_event(void * data)
 			else
 				if (!ev[0].active && validKey(alEv.keyboard.keycode) && !ev[0].timerExist()) { //Si la posición 0, correspondiente a input de teclado, está desactivada y tambien lo está su timer...
 					setEvent(trasformAllegroEvents(alEv.keyboard.keycode), this->localWorm); //...Entonces interpreto el input y lo introduzco en ev[0].
-					std::cout << "Soy una verga e imprimo Worm Numero:" << this->localWorm << std::endl;
 				}
 			break;
 		case ALLEGRO_EVENT_KEY_UP: // Si solté una tecla...
