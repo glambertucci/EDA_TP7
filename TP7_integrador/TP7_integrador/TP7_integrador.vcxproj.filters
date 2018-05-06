@@ -185,9 +185,6 @@
     <ClCompile Include="Worm.cpp">
       <Filter>Source Files\Miscellaneous\Worms</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>Source Files\Miscellaneous\Worms</Filter>
-    </ClCompile>
     <ClCompile Include="allegro_ctrl.cpp">
       <Filter>Source Files\Controllers + Observers\Controller</Filter>
     </ClCompile>
@@ -205,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="handshake.cpp">
       <Filter>Source Files\FSM + Net\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Source Files\Miscellaneous\Worms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
