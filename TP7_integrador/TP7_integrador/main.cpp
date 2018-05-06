@@ -94,4 +94,6 @@ int main(int argc, char * argv[])
 	}
 	else
 		cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;
+
+	return 0;
 }
