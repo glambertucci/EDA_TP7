@@ -39,14 +39,17 @@ void server::nonblock(void)
 	this->socket_forServer->non_blocking(true);
 }
 std::string server::receiveMessage() {
+
 	static bool notfirst = false;
 	size_t len;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 	Timer time;
+
 	if(notfirst){
 		time.start();
 	}
+
 	do {
 	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	if(notfirst){

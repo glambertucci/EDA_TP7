@@ -99,14 +99,12 @@ void Stage::refresh()
 void Stage::quit() //Pone al miembro "leave" en verdadero, para indicar la finalización del programa.
 {
 	package_data pckg;
-	if (searchForObserver(NETOBSNAME)) { //Este if pareciera superfluo, pero si no hay observer de Networking, no hay networking y por ende esta porcion de codigo no debe ejecutarse.
-			pckg.header = QUIT;
-			string stringConv = compose_pkt(pckg);
-			if (this->net->getCurrentMode() == SERVER) 
-				net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
-			else
-				net->getClient()->send_message(stringConv.c_str(), stringConv.length());
-		}
+	pckg.header = QUIT;
+	string stringConv = compose_pkt(pckg);
+	if (this->net->getCurrentMode() == SERVER)
+		net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
+	else
+		net->getClient()->send_message(stringConv.c_str(), stringConv.length());
 	this->leave = true;
 }
 
@@ -119,17 +117,4 @@ void Stage::update() //Le pido a todo observer en el vector de observers que hag
 {
 	for (observer * obs : observers)
 		obs->update(this);
-}
-
-
-observer * Stage::searchForObserver(std::string observerName) {
-
-	controller * retValue;
-
-	for (observer * obs : this->observers) {
-		if (obs->getName() == observerName) {
-			return obs;
-		}
-	}
-	return NULL;
 }

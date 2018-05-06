@@ -3,22 +3,24 @@
 
 void obs_network::update(void * stage) { //sendLocal() para los amigos
 	this->events = ((Stage *)stage)->getEventList();
-	for (Ev_t ev : * events)  //Reviso cada evento y, si su origen es local, mando una copia por red.
+	for (Ev_t ev : *events)  //Reviso cada evento y, si su origen es local, mando una copia por red.
 		if (ev.origin == LOCAL && ev.active && (ev.Event != TIMER_EV)) //Solo envío aquellos eventos locales activos.
 			this->composeAndSend(ev, stage);
 }
 
-void obs_network::composeAndSend(Ev_t event, void * stage) {
-/*Esta función compone el paquete según el tipo de evento recibido y luego lo envía a la otra computadora. */
+void obs_network::composeAndSend(Ev_t event, void * stage) { /*Esta función compone el paquete según el tipo de evento recibido y luego lo envía a la otra computadora. */
+
 	Stage * scenario = (Stage *)stage;
 	uint32_t Wid = WORMC;
 	bool shouldSend = true;
 	if (net->getCurrentMode() == CLIENT)
-		Wid = WORMC;	
+		Wid = WORMC;
 	else
 		Wid = WORMS;
 	package_data pckg;
+
 	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
+
 		if (shouldFlip(event, stage)) {
 			pckg.header = MOVE;
 			pckg.action = 'T';
@@ -26,6 +28,7 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 		}
 		else
 			shouldSend = false;
+
 	}
 	else if (event.Event == JUMP_EV) {
 		pckg.header = MOVE;
@@ -60,15 +63,15 @@ bool obs_network::shouldFlip(Ev_t ev, void * stage) {
 	Stage * scenario = (Stage *)stage;
 	vector<Worm> * wormVect = scenario->getWorms();
 	if ((scenario->getdata())->getCurrentMode() == CLIENT) {
-		if (((*wormVect)[1].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV)) 
+		if (((*wormVect)[1].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
 			shouldI = true;
-		else if (((*wormVect)[1].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV)) 
+		else if (((*wormVect)[1].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
 			shouldI = true;
 	}
 	else {
-		if (((*wormVect)[0].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV)) 
+		if (((*wormVect)[0].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
 			shouldI = true;
-		else if (((*wormVect)[0].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV)) 
+		else if (((*wormVect)[0].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
 			shouldI = true;
 	}
 	return shouldI;
