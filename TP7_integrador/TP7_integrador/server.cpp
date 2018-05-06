@@ -49,7 +49,7 @@ void server::nonblock(void)
 }
 std::string server::receiveMessage() {
 
-
+	static bool notfirst = false;
 	size_t len;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
@@ -72,6 +72,24 @@ std::string server::receiveMessage() {
 	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
 
 	//} while (error);
+	if (notfirst) {
+		if (time.getTime() < TIMEOUT)
+		{
+			if (error) {
+				std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+				failure = 1;
+				return ERR_STR;
+			}
+			std::string auxString = "";
+
+			for (int i = 0; (i < strlen(buf)); i++) {
+				auxString += buf[i];
+			}
+			return auxString;
+		}
+	}
+	notfirst = true;
+
 	if(time.getTime()< TIMEOUT)
 	{
 		if (error) {
