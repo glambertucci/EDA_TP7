@@ -6,7 +6,7 @@
 unsigned int trasnformIDintoPos(unsigned int wormID);
 
 unsigned int trasnformIDintoPos(unsigned int wormID) {
-	return wormID;
+	return (wormID-1);
 }
 
 Stage::Stage()
