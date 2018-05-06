@@ -7,7 +7,7 @@
 #include <vector>
 #include "Ev_t.h"
 #include <list>
-
+#include "netData.h"
 using namespace std;
 
 typedef enum ActionType
@@ -19,7 +19,7 @@ class Stage
 {
 
 public:
-	Stage();	//Constructor
+	Stage(netData * net_);	//Constructor
 	~Stage();	//Destructor
 	void createWorms(Worm * worm);	//Crea un worm
 	vector<Worm> * getWorms();
@@ -41,7 +41,8 @@ public:
 	//-----setters-----//
 	void setEventList(list<Ev_t> * list) { this->events = list; }
 	list<Ev_t> * getEventList() { return this->events; }
-
+	//
+	netData * getdata();
 
 
 private:
@@ -50,6 +51,7 @@ private:
 	ActionType lastAction;
 	list<Ev_t> * events; //Vector con los eventos a trabajar.
 	void update();
+	netData * net;
 	bool leave = false;
 };
 
