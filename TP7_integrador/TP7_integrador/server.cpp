@@ -9,11 +9,9 @@ const int HELLO_PORT = 15667;
 
 
 std::string server::wait_for_message() {
-	
 	std::string res;
 	boost::system::error_code error;
 	char buf[sizeof(package_data)];
-
 	do {
 		this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	} while ((error.value() == WSAEWOULDBLOCK));
@@ -24,18 +22,14 @@ std::string server::wait_for_message() {
 void server::start_to_listen() {
 	std::cout << "Waiting for somebody to connect.. :( " << std::endl;
 	server_acceptor->accept(*socket_forServer);
-
 }
 
 void server::sendMessage(const char *buf, int size) {
-
 	size_t len;
 	boost::system::error_code error;
-
 	do {
 		len = socket_forServer->write_some(boost::asio::buffer(buf, size), error);
 	} while ((error.value() == WSAEWOULDBLOCK));
-
 	if (error)
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 }
@@ -45,12 +39,10 @@ void server::nonblock(void)
 	this->socket_forServer->non_blocking(true);
 }
 std::string server::receiveMessage() {
-
 	static bool notfirst = false;
 	size_t len;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-
 	Timer time;
 	if(notfirst){
 		time.start();
@@ -63,7 +55,6 @@ std::string server::receiveMessage() {
 			break;
 	}
 	} while ((error.value() == WSAEWOULDBLOCK) );
-
 	if (notfirst) {
 		if (time.getTime() < TIMEOUT)
 		{
@@ -81,9 +72,7 @@ std::string server::receiveMessage() {
 		}
 		return NOPACKAGE;
 	}
-	notfirst = true;
-
-	
+	notfirst = true;//No deberiamos repetir codigo tan fuertemente
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 			failure = 1;
@@ -91,11 +80,9 @@ std::string server::receiveMessage() {
 		}
 		else {
 			std::string auxString = "";
-
 			for (int i = 0; i < len; i++) {
 				auxString += buf[i];
 			}
-
 			return auxString;
 		}
 }
