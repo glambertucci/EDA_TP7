@@ -90,6 +90,7 @@ std::string server::receiveMessage() {
 			}
 			return auxString;
 		}
+		return NOPACKAGE;
 	}
 	notfirst = true;
 

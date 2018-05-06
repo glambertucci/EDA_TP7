@@ -76,6 +76,7 @@ std::string client::receiveMessage() {
 			}
 			return auxString;
 		}
+		return NOPACKAGE;
 	}
 	if (notfirst < 0) {
 		notfirst++;
