@@ -19,14 +19,14 @@ allegro_c::allegro_c()
 							{
 								if ((timer = al_create_timer(1.0 / FPS)))
 								{
-									//if ((display = al_create_display(SCREEN_W, SCREEN_H)))
+									if ((display = al_create_display(SCREEN_W, SCREEN_H)))
 									{
-										//al_register_event_source(this->ev_queue, al_get_keyboard_event_source());
-										//al_register_event_source(this->ev_queue, al_get_display_event_source(this->display));
-										//al_register_event_source(this->ev_queue, al_get_timer_event_source(this->timer));
-										//al_set_window_title(display, "Tournament of Power");
-										//ALLEGRO_BITMAP * icon = al_load_bitmap("icon.png");
-										//al_set_display_icon(display, icon);
+										al_register_event_source(this->ev_queue, al_get_keyboard_event_source());
+										al_register_event_source(this->ev_queue, al_get_display_event_source(this->display));
+										al_register_event_source(this->ev_queue, al_get_timer_event_source(this->timer));
+										al_set_window_title(display, "Tournament of Power");
+										ALLEGRO_BITMAP * icon = al_load_bitmap("icon.png");
+										al_set_display_icon(display, icon);
 									}
 								}
 							}
@@ -70,16 +70,7 @@ bool allegro_c::load_music(const char * music_file) //Devuelve 1 si todo salio b
 	return result;
 
 }
-void allegro_c::create_display() {
-	display = al_create_display(SCREEN_W, SCREEN_H);
-	al_register_event_source(this->ev_queue, al_get_keyboard_event_source());
-	al_register_event_source(this->ev_queue, al_get_display_event_source(this->display));
-	al_register_event_source(this->ev_queue, al_get_timer_event_source(this->timer));
-	al_set_window_title(display, "Tournament of Power");
-	ALLEGRO_BITMAP * icon = al_load_bitmap("icon.png");
-	al_set_display_icon(display, icon);
 
-}
 void allegro_c::updateDisplay()
 {
 	al_flip_display();

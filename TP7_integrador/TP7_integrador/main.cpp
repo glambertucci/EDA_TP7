@@ -81,7 +81,6 @@ int main(int argc, char * argv[])
 
 
 		if (handshake(whoAmI, net.getCurrentMode(), net.getOwnIP(), worm1, worm2)) {
-			allegroTools.create_display();
 			allegroTools.start_timer();
 			allegroTools.play_music();
 			while (!stage.isOver()) {
