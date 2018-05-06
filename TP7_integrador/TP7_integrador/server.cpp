@@ -24,16 +24,13 @@ std::string server::wait_for_message() {
 void server::start_to_listen() {
 	std::cout << "Waiting for somebody to connect.. :( " << std::endl;
 	server_acceptor->accept(*socket_forServer);
-//	socket_forServer->non_blocking(true);
-//	this->server_acceptor->accept(*(this->socket_forServer));
+
 }
 
 void server::sendMessage(const char *buf, int size) {
 
 	size_t len;
 	boost::system::error_code error;
-
-//	this->socket_forServer->non_blocking(true);
 
 	do {
 		len = socket_forServer->write_some(boost::asio::buffer(buf, size), error);
@@ -53,7 +50,7 @@ std::string server::receiveMessage() {
 	size_t len;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-	//this->socket_forServer->non_blocking();
+
 	Timer time;
 	if(notfirst){
 		time.start();
@@ -66,15 +63,7 @@ std::string server::receiveMessage() {
 			break;
 	}
 	} while ((error.value() == WSAEWOULDBLOCK) );
-	//time.stop();
 
-	//do {
-	//	len = this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
-	//} while ((error.value() == WSAEWOULDBLOCK));
-	//do {
-	//	len = socket_forServer->read_some(boost::asio::buffer(buf), error);
-
-	//} while (error);
 	if (notfirst) {
 		if (time.getTime() < TIMEOUT)
 		{
@@ -109,9 +98,6 @@ std::string server::receiveMessage() {
 
 			return auxString;
 		}
-
-
-
 }
 
 server::server() {

@@ -12,11 +12,14 @@ unsigned int trasnformIDintoPos(unsigned int wormID) {
 		return 1;
 }
 
-Stage::Stage()
+Stage::Stage(netData * net_)
 {
-
+	net = net_;
 }
-
+netData * Stage::getdata()
+{
+	return net;
+}
 
 Stage::~Stage() //Sacamos a los worms del vector en el cual están almacenados y liberamos esa memoria.
 {

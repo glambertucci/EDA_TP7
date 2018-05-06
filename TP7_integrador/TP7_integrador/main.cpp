@@ -45,7 +45,7 @@ int main(int argc, char * argv[])
 
 	if ((argc > 1 && argc <= MAX_INPUT_SIZE) && (parseCmdLine(argc, argv, &parseCallback, &net) != ERRORPARSE)) //Evaluación de los parámetros. Si son correctos se continúa con el programa, de lo contrario pasamos a imprimir el mensaje de error.
 	{
-		Stage stage;
+		Stage stage(&net);
 		allegro_c allegroTools; //Inicialización de Allegro.
 		allegroTools.load_music(BACKGROUNDSONG);
 		allegroTools.play_music();
