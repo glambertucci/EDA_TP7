@@ -55,13 +55,16 @@ std::string server::receiveMessage() {
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 	this->socket_forServer->non_blocking();
 	Timer time;
+	if(notfirst){
 	time.start();
+	}
 	do {
 	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
-	time.stop();
-
-	if (time.getTime() > TIMEOUT)
-		break;
+	if(notfirst){
+		time.stop();
+		if (time.getTime() > TIMEOUT)
+			break;
+	}
 	} while ((error.value() == WSAEWOULDBLOCK) );
 	//time.stop();
 
