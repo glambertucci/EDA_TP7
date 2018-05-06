@@ -41,7 +41,8 @@ public:
 	//-----setters-----//
 	void setEventList(list<Ev_t> * list) { this->events = list; }
 	list<Ev_t> * getEventList() { return this->events; }
-	//
+
+
 	netData * getdata();
 
 

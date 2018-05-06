@@ -8,7 +8,7 @@ void obs_network::update(void * stage) { //sendLocal() para los amigos
 
 	for (Ev_t ev : * events) { //Reviso cada evento y, si su origen es local, mando una copia por red.
 		if (ev.origin == LOCAL && ev.active && (ev.Event != TIMER_EV)) { //Solo envío aquellos eventos locales activos.
-			this->composeAndSend(ev);
+			this->composeAndSend(ev, stage);
 		}
 	}
 }
@@ -29,7 +29,7 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 	package_data pckg;
 
 	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
-		if (shouldFlip()) {
+		if (shouldFlip(event, stage)) {
 			pckg.header = MOVE;
 			pckg.action = 'T';
 			pckg.id_worm = Wid;
@@ -66,7 +66,28 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 	}
 }
 
-bool shouldFlip(void * stage) {
+bool obs_network::shouldFlip(Ev_t ev, void * stage) {
 
-	if(scenario->net)
+	bool shouldI = false;
+
+	Stage * scenario = (Stage *)stage;
+	vector<Worm> * wormVect = scenario->getWorms();
+
+	if ((scenario->getdata())->getCurrentMode() == CLIENT) {
+		if (((*wormVect)[1].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV)) {
+			shouldI = true;
+		}
+		else if (((*wormVect)[1].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV)) {
+			shouldI = true;
+		}
+	}
+	else {
+		if (((*wormVect)[0].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV)) {
+			shouldI = true;
+		}
+		else if (((*wormVect)[0].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV)) {
+			shouldI = true;
+		}
+	}
+	return shouldI;
 }
