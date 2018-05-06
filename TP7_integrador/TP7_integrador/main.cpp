@@ -47,8 +47,6 @@ int main(int argc, char * argv[])
 	
 		allegro_c allegroTools; //Inicialización de Allegro.
 		allegroTools.load_music(BACKGROUNDSONG);
-		allegroTools.play_music();
-
 		//Controllers
 		EventHandler eventHandler; //eventHandler me permitirá administrar múltiples controllers.
 		allegro_ctrl al_ctrl(allegroTools.getEventQueue(), ALLEGROCONT, net.getCurrentMode());
@@ -84,6 +82,8 @@ int main(int argc, char * argv[])
 
 		if (handshake(whoAmI, net.getCurrentMode(), net.getOwnIP(), worm1, worm2)) {
 			allegroTools.start_timer();
+			allegroTools.play_music();
+			allegroTools.create_display();
 			while (!stage.isOver()) {
 				eventHandler.getEvent();
 				if (eventHandler.areThereActiveEvents()) //Si hay eventos activos, procedo al dispatcher. De lo contrario, sigo esperando eventos.
