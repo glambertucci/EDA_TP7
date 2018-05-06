@@ -44,17 +44,21 @@ bool client::success() {
 }
 
 std::string client::receiveMessage() {
-
+	static bool notfirst=false;
+	Timer time;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 	this->socket_forClient->non_blocking();
-	Timer time;
-	time.start();
+	if (notfirst) {
+		time.start();
+	}
 	do {
 		this->socket_forClient->read_some(boost::asio::buffer(buf, 30), error);
-		time.stop();
-		if (time.getTime() > TIMEOUT)
-			break;
+		if (notfirst) {
+			time.stop();
+			if (time.getTime() > TIMEOUT)
+				break;
+		}
 	} while ((error.value() == WSAEWOULDBLOCK));
 
 	//do {
@@ -64,7 +68,23 @@ std::string client::receiveMessage() {
 	//do {
 	//	size_t len = socket_forClient->read_some(boost::asio::buffer(buf), error);
 	//} while (error);
+	if(notfirst){
+		if (time.getTime() < TIMEOUT)
+		{
+			if (error) {
+				std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+				failure = 1;
+				return ERR_STR;
+			}
+			std::string auxString = "";
 
+			for (int i = 0; (i < strlen(buf)); i++) {
+				auxString += buf[i];
+			}
+			return auxString;
+		}
+	}
+	notfirst = true;
 	if (time.getTime() < TIMEOUT)
 	{
 		if (error) {
