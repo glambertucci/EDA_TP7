@@ -24,14 +24,10 @@ void Worm::setX(float Xcoord)
 {
 	this->coord.x = Xcoord;
 }
-Worm::~Worm()
-{
-}
-
+Worm::~Worm(){}
 void Worm::move(Direction a)
 {
-	if (this->prev_state != JUMP_ST)
-	{
+	if (this->prev_state != JUMP_ST){
 		this->direction = a;
 		this->prev_state = state;
 		this->state = MOVE_ST;
@@ -40,15 +36,13 @@ void Worm::move(Direction a)
 
 void Worm::jump()
 {
-	if (this->prev_state != MOVE_ST)
-	{
+	if (this->prev_state != MOVE_ST){
 		this->prev_state = state;
 		this->state = JUMP_ST;
 	}
 }
 
-void Worm::flipLeft()
-{
+void Worm::flipLeft(){
 	this->direction = (this->direction == LEFT_DR ? LEFT_DR : LEFT_DR);
 }
 
@@ -56,41 +50,34 @@ void Worm::flipRight() {
 	this->direction = (this->direction == RIGHT_DR ? RIGHT_DR : RIGHT_DR);
 }
 
-State Worm::getState()
-{
+State Worm::getState(){
 	return state;
 }
 
-Direction Worm::getDirection()
-{
+Direction Worm::getDirection(){
 	return direction;
 }
 
-float Worm::getX()
-{
+float Worm::getX(){
 	return coord.x;
 }
 
-float Worm::getY()
-{
+float Worm::getY(){
 	return coord.y;
 }
 
-int Worm::getTicks()
-{
+int Worm::getTicks(){
 	return ticks;
 }
 
-void Worm::doMove()
-{
+void Worm::doMove(){
 	this->ticks++;
 	if (!(abs(this->ticks - 3) % this->data->RepeatedFramesPerCycle))
 		if (this->isXValid())
 			this->coord.x += this->direction * this->data->pixelsPerCycle;
 }
 
-void Worm::doJump()
-{
+void Worm::doJump(){
 	this->ticks++;
 	if (this->ticks >= 0 && this->ticks < JUMPTICKS)
 	{
@@ -104,57 +91,41 @@ void Worm::doJump()
 		}
 		if (this->ticks == JUMPTICKS - 1)
 			this->coord.y = this->data->minY;
-
 	}
-
 }
 
-bool Worm::isXValid()
-{
+bool Worm::isXValid(){
 	bool retValue = false;
-
 	if ((this->direction == LEFT_DR) && ((this->coord.x + 9) > data->minX))
 		retValue = true;
 	else if ((this->direction == RIGHT_DR) && (this->coord.x + 49< data->maxX))
 		retValue = true;
-
 	return retValue;
 }
 
 void Worm::update()
 {
-
-	switch (this->state)
-	{
-
+	switch (this->state){
 	case MOVE_ST:
-		if (this->prev_state != JUMP_ST)
-		{
-			if (this->ticks < WALKTICKS)
-			{
+		if (this->prev_state != JUMP_ST){
+			if (this->ticks < WALKTICKS){
 				this->doMove();
 				this->prev_state = MOVE_ST;
 			}
-			else
-			{
+			else{
 				this->state = STILL_ST;
 				this->prev_state = STILL_ST;
 				this->ticks = 0;
 			}
-
 		}
-
 		break;
 	case JUMP_ST:
-		if (this->prev_state != MOVE_ST)
-		{
-			if (this->ticks < JUMPTICKS)
-			{
+		if (this->prev_state != MOVE_ST){
+			if (this->ticks < JUMPTICKS){
 				this->doJump();
 				this->prev_state = JUMP_ST;
 			}
-			else
-			{
+			else{
 				this->state = STILL_ST;
 				this->prev_state = STILL_ST;
 				this->ticks = 0;

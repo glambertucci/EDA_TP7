@@ -89,11 +89,11 @@ int main(int argc, char * argv[])
 			}
 		}
 		else
-			cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;
+			cout << "Error in handshake!" << endl;
 
 	}
 	else
-		cout << "Algo está mal papu, ¿Por qué no lo arreglas?" << endl;
+		cout << "Error in parse!" << endl;
 
 	return 0;
 }
