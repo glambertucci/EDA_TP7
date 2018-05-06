@@ -80,8 +80,7 @@ std::string client::receiveMessage() {
 	if (notfirst < 0) {
 		notfirst++;
 	}
-	if (time.getTime() < TIMEOUT)
-	{
+
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 			failure = 1;
@@ -93,8 +92,7 @@ std::string client::receiveMessage() {
 			auxString += buf[i];
 		}
 		return auxString;
-	}
-	return NOPACKAGE;
+
 }
 
 void client::nonblock(void)

@@ -93,8 +93,7 @@ std::string server::receiveMessage() {
 	}
 	notfirst = true;
 
-	if(time.getTime()< TIMEOUT)
-	{
+	
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 			failure = 1;
@@ -109,8 +108,8 @@ std::string server::receiveMessage() {
 
 			return auxString;
 		}
-	}
-	else return NOPACKAGE;
+
+
 
 }
 
