@@ -49,19 +49,19 @@ std::string client::receiveMessage() {
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
 	this->socket_forClient->non_blocking();
-	if (notfirst<0) {
+	if (notfirst==0) {
 		time.start();
 	}
 	do {
 		this->socket_forClient->read_some(boost::asio::buffer(buf, 30), error);
-		if (notfirst<0) {
+		if (notfirst == 0) {
 			time.stop();
 			if (time.getTime() > TIMEOUT)
 				break;
 		}
 	} while ((error.value() == WSAEWOULDBLOCK));
 
-	if(notfirst<0){
+	if(notfirst == 0){
 		if (time.getTime() < TIMEOUT)
 		{
 			if (error) {
