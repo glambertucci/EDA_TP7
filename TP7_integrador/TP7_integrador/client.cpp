@@ -48,7 +48,7 @@ std::string client::receiveMessage() {
 	Timer time;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-	this->socket_forClient->non_blocking();
+	//this->socket_forClient->non_blocking();
 	if (notfirst==0) {
 		time.start();
 	}
