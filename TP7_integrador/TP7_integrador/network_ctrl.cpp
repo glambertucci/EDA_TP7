@@ -58,6 +58,7 @@ void * network_ctrl::get_event(void * data) {
 		case  QUIT:
 			ev[1].Event = QUIT_EV; //Si cerré el display, guardo en 1 tal evento y luego se trabajará para finalizar el programa.
 			ev[1].origin = EXTERN;
+			ev[1].activate();
 			break;
 			}
 		}
