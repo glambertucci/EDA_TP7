@@ -19,6 +19,7 @@ public:
 	void play_music();
 	void updateDisplay();
 	void start_timer();
+	void create_display();
 private:
 	ALLEGRO_DISPLAY * display = NULL;
 	ALLEGRO_EVENT_QUEUE * ev_queue = NULL;
