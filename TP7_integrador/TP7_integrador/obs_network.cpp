@@ -20,6 +20,7 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 
 	Stage * scenario = (Stage *)stage;
 	uint32_t Wid = WORMC;
+	bool shouldSend = true;
 
 	if (net->getCurrentMode() == CLIENT)
 		Wid = WORMC;	
@@ -34,6 +35,8 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 			pckg.action = 'T';
 			pckg.id_worm = Wid;
 		}
+		else
+			shouldSend = false;
 	}
 	else if (event.Event == JUMP_EV) {
 		pckg.header = MOVE;
@@ -56,7 +59,7 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 		pckg.id_worm = NULL;
 	}
 
-	if (event.Event != NOEVENT && event.Event != TIMER_EV) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
+	if (event.Event != NOEVENT && event.Event != TIMER_EV && shouldSend) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
 		string stringConv = compose_pkt(pckg);
 		if (this->net->getCurrentMode() == SERVER) {
 			net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
