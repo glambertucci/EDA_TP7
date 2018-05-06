@@ -15,7 +15,7 @@ public:
 	void setEventList(list<Ev_t> * list) { this->events = list; }
 
 private:
-	void composeAndSend(Ev_t event);
+	void composeAndSend(Ev_t event, void * stage);
 	list<Ev_t> * events; //Vector con los eventos a trabajar.
 
 	// Modificados solo en el constructor //

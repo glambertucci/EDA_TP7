@@ -13,12 +13,12 @@ void obs_network::update(void * stage) { //sendLocal() para los amigos
 	}
 }
 
-void obs_network::composeAndSend(Ev_t event) {
+void obs_network::composeAndSend(Ev_t event, void * stage) {
 
 	/*Esta función compone el paquete según el tipo de evento recibido
 	y luego lo envía a la otra computadora. */
 
-
+	Stage * scenario = (Stage *)stage;
 	uint32_t Wid = WORMC;
 
 	if (net->getCurrentMode() == CLIENT)
@@ -29,9 +29,11 @@ void obs_network::composeAndSend(Ev_t event) {
 	package_data pckg;
 
 	if (event.Event == FLIP_LEFT_EV || event.Event == FLIP_RIGHT_EV) {
-		pckg.header = MOVE;
-		pckg.action = 'T';
-		pckg.id_worm = Wid;
+		if (shouldFlip()) {
+			pckg.header = MOVE;
+			pckg.action = 'T';
+			pckg.id_worm = Wid;
+		}
 	}
 	else if (event.Event == JUMP_EV) {
 		pckg.header = MOVE;
@@ -62,4 +64,9 @@ void obs_network::composeAndSend(Ev_t event) {
 		else
 			net->getClient()->send_message(stringConv.c_str(), stringConv.length());
 	}
+}
+
+bool shouldFlip(void * stage) {
+
+	if(scenario->net)
 }
