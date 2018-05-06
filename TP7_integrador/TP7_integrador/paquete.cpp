@@ -10,10 +10,6 @@ std::string move_compose(package_data data);
 std::string quit_compose(package_data data);
 std::string error_compose(package_data data);
 
-//util
-std::string switchendianfier(uint16_t *param);
-std::string switchendianfier(uint32_t *param);
-
 //decompose
 void ack_decompose(package_data& mydata, std::string a);
 void imr_decompose(package_data& mydata, std::string a);
@@ -95,7 +91,7 @@ std::string ack_compose(package_data data)
 {
 	std::string pkt;
 	pkt += data.header;
-	pkt += switchendianfier(&data.x_coord);//pasar a big endian
+	//pkt += switchendianfier(&data.x_coord);//pasar a big endian //si se llega a implementar pasar a big endian comohice en imr
 	return pkt;
 }
 std::string acks_compose(package_data data)
@@ -142,10 +138,3 @@ void move_decompose(package_data& mydata, std::string a) {
 	mydata.id_worm = num;
 }
 
-
-#define I_AM_READY 0x20
-#define ACK 0x01
-#define ACKS 0x00
-#define MOVE 0x30
-#define QUIT 0xE0
-#define ERROR 0xFF
