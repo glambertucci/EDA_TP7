@@ -28,7 +28,6 @@ client::~client() {
 void client::startConnection(const char* host) {
 	endpoint = client_resolver->resolve(
 		boost::asio::ip::tcp::resolver::query(host, CLIENT_PORT));
-
 	cout << "Trying to connect to " << host << " on port " << CLIENT_PORT << endl;
 	try {
 		boost::asio::connect(*socket_forClient, endpoint);
@@ -44,11 +43,10 @@ bool client::success() {
 }
 
 std::string client::receiveMessage() {
-	static int notfirst=-2;
+	static int notfirst=-2;//Nice
 	Timer time;
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete.
-	//this->socket_forClient->non_blocking();
 	if (notfirst==0) {
 		time.start();
 	}
@@ -70,7 +68,6 @@ std::string client::receiveMessage() {
 				return ERR_STR;
 			}
 			std::string auxString = "";
-
 			for (int i = 0; (i < strlen(buf)); i++) {
 				auxString += buf[i];
 			}
@@ -78,22 +75,18 @@ std::string client::receiveMessage() {
 		}
 		return NOPACKAGE;
 	}
-	if (notfirst < 0) {
+	if (notfirst < 0)
 		notfirst++;
-	}
-
 		if (error) {
 			std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 			failure = 1;
 			return ERR_STR;
 		}
 		std::string auxString = "";
-
-		for (int i = 0; (i < strlen(buf)); i++) {
+		for (int i = 0; (i < strlen(buf)); i++)
 			auxString += buf[i];
-		}
-		return auxString;
 
+		return auxString;
 }
 
 void client::nonblock(void)

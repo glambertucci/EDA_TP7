@@ -37,6 +37,7 @@ void Stage::createWorms(Worm * worm) //Metemos a los worms en su vector correspo
 vector<Worm>* Stage::getWorms() //Devuelvo la posición de memoria del vector donde están almacenados los worms.
 {
 	return &worms;
+
 }
 
 void Stage::destroyWorm(unsigned int wormID) //Destruimos un worm

@@ -17,7 +17,6 @@
 #define STAGEFILE "Scenario.png"
 
 using namespace std;
-
 class obs_stage : public observer
 {
 public:
@@ -26,7 +25,6 @@ public:
 	void update(void * data);
 private:
 	void drawWorm(float x_, float y_, vector<ALLEGRO_BITMAP*>& sprite, int tick, int flag);
-
 	ALLEGRO_BITMAP * background = NULL;
 	ALLEGRO_BITMAP * stageBitmap = NULL;
 	vector<ALLEGRO_BITMAP *> jump;

@@ -8,14 +8,9 @@
 #include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
 #include <boost/exception_ptr.hpp> 
-
-
 #include "timer.h"
-
 #define NOPACKAGE "N"
-
 using namespace std;
-
 class client {
 public:
 	client();

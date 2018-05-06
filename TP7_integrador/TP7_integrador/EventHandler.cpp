@@ -7,14 +7,9 @@
 using namespace std;
 
 
-EventHandler::EventHandler()
-{
-}
+EventHandler::EventHandler(){}
 
-
-EventHandler::~EventHandler()
-{
-}
+EventHandler::~EventHandler(){}
 
 void EventHandler::loadController(controller * cont) //Cargo un puntero a controller en el vector correspondiente, para poder acceder a el y obtener eventos.
 {
@@ -34,12 +29,9 @@ void EventHandler::getEvent()		// El networking tambien tiene que tener un contr
 bool EventHandler::areThereActiveEvents()
 {
 	bool retValue = false;
-
 	for (Ev_t& ev : events) //Reviso la lista de eventos para ver si hay algún evento activo e informarlo.
 		if (ev.active)
 			retValue = true;
-
-
 	return retValue;
 }
 
@@ -48,8 +40,6 @@ Ev_t * EventHandler::returnEvent(int * size)
 	Ev_t retValue[5];
 	for (int i = 0; i < 5; i++)
 		retValue->deactivate();
-
-
 	for (int i = 0; i < 5 && !events.empty(); i++) {
 		retValue[i] = events.front();
 		events.pop_front();
@@ -75,7 +65,6 @@ void EventHandler::displatchEvent(Ev_t & ev, Stage& stage)
 
 void EventHandler::HandleEventDispatch(Stage& stage)
 {
-
 	while (events.size()) { //Mientras queden eventos por trabajar, repetiré el loop.
 		displatchEvent(*events.begin(), stage); //Llamo al verdadero dispatcher. Le paso el primer evento de la lista y el escenario.
 		events.pop_front(); //Elimino el evento que acabo de trabajar.

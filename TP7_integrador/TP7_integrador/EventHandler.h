@@ -20,10 +20,7 @@ public:
 	bool areThereActiveEvents();
 	Ev_t * returnEvent(int * size); 
 	void HandleEventDispatch(Stage& stage);
-
 	list<Ev_t> * getEventList() { return &(this->events); }
-
-
 private:
 	void displatchEvent(Ev_t& ev, Stage& stage);
 	vector<controller *> controllers; //Vector con los controllers activos, a través de los cuales obtengo eventos.

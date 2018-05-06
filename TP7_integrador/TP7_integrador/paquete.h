@@ -5,7 +5,6 @@
 #define EMPTY (-1)
 #define ERR_STR "ERR"
 #define PKGSIZE 8 //Tamaño del paquete en bytes. (Se necesita constante y aparte sizeof devuelve 12 para la estructura, pero 8 para la suma de los miembros individuales, que es lo que nos importa).
-
 typedef struct{
 public:
 	uint8_t header;//1 byte header
@@ -30,4 +29,3 @@ public:
 
 std::string compose_pkt(package_data data);
 void decompose_data(std::string a, package_data& mydata);
-bool checkValidPkgCompos(package_data data);

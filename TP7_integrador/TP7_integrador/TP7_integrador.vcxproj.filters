@@ -99,9 +99,6 @@
     <ClInclude Include="paquete.h">
       <Filter>Header Files\FSM + Net\Net</Filter>
     </ClInclude>
-    <ClInclude Include="bitinit.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="allegroClass.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -113,9 +110,6 @@
     </ClInclude>
     <ClInclude Include="general.h">
       <Filter>Header Files\Miscelanous</Filter>
-    </ClInclude>
-    <ClInclude Include="init_arr.h">
-      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>Header Files\Miscelanous\Worms</Filter>
@@ -172,9 +166,6 @@
     </ClCompile>
     <ClCompile Include="client.cpp">
       <Filter>Source Files\FSM + Net\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="init_arr.cpp">
-      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="paquete.cpp">
       <Filter>Source Files\FSM + Net\Net</Filter>
