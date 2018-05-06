@@ -25,7 +25,6 @@ allegro_c::allegro_c()
 										al_register_event_source(this->ev_queue, al_get_display_event_source(this->display));
 										al_register_event_source(this->ev_queue, al_get_timer_event_source(this->timer));
 										al_set_window_title(display, "Tournament of Power");
-										al_start_timer(this->timer);
 										ALLEGRO_BITMAP * icon = al_load_bitmap("icon.png");
 										al_set_display_icon(display, icon);
 									}
@@ -48,7 +47,9 @@ allegro_c::allegro_c()
 	else
 		std::cout << "ERROR: Failed to initialize allegro system\n" << std::endl;
 }
-
+void allegro_c::start_timer() {
+	al_start_timer(this->timer); //Usado para iniciar el timer despues del handshake bloqueante
+}
 allegro_c::~allegro_c()
 {
 	al_destroy_display(display);
