@@ -102,9 +102,8 @@ void Stage::quit() //Pone al miembro "leave" en verdadero, para indicar la final
 	if (searchForObserver(NETOBSNAME)) { //Este if pareciera superfluo, pero si no hay observer de Networking, no hay networking y por ende esta porcion de codigo no debe ejecutarse.
 			pckg.header = QUIT;
 			string stringConv = compose_pkt(pckg);
-			if (this->net->getCurrentMode() == SERVER) {
+			if (this->net->getCurrentMode() == SERVER) 
 				net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
-			}
 			else
 				net->getClient()->send_message(stringConv.c_str(), stringConv.length());
 		}
