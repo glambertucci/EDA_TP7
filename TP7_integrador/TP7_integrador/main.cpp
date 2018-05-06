@@ -44,6 +44,7 @@ int main(int argc, char * argv[])
 	if ((argc > 1 && argc <= MAX_INPUT_SIZE) && (parseCmdLine(argc, argv, &parseCallback, &net) != ERRORPARSE)) //Evaluación de los parámetros. Si son correctos se continúa con el programa, de lo contrario pasamos a imprimir el mensaje de error.
 	{
 		Stage stage(&net);
+	
 		allegro_c allegroTools; //Inicialización de Allegro.
 		allegroTools.load_music(BACKGROUNDSONG);
 		allegroTools.play_music();
@@ -82,6 +83,7 @@ int main(int argc, char * argv[])
 
 
 		if (handshake(whoAmI, net.getCurrentMode(), net.getOwnIP(), worm1, worm2)) {
+			allegroTools.start_timer();
 			while (!stage.isOver()) {
 				eventHandler.getEvent();
 				if (eventHandler.areThereActiveEvents()) //Si hay eventos activos, procedo al dispatcher. De lo contrario, sigo esperando eventos.

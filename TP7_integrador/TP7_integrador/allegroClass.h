@@ -18,6 +18,7 @@ public:
 	bool load_music(const char * music_file);
 	void play_music();
 	void updateDisplay();
+	void start_timer();
 private:
 	ALLEGRO_DISPLAY * display = NULL;
 	ALLEGRO_EVENT_QUEUE * ev_queue = NULL;
