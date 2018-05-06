@@ -88,12 +88,11 @@ void * network_ctrl::get_event(void * data) {
 void network_ctrl::setEvent(Evnt evento, uint32_t wormID) {
 
 
-	if (evento == FLIP_EV) {
 		ev[0].Event = evento;
+		ev[0].activate();
 		ev[0].wormID = wormID;
 		ev[0].newTimer();
 		ev[0].origin = EXTERN;
-	}
 
 }
 
