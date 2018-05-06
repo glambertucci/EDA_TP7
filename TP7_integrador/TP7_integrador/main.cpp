@@ -24,8 +24,6 @@
 
 //----Graphics----//
 #include "allegroClass.h"
-#include "bitinit.h"
-#include "init_arr.h"
 
 //---Observers---//
 #include "obs_stage.h"

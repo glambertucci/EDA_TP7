@@ -17,7 +17,6 @@
 #define STAGEFILE "Scenario.png"
 
 using namespace std;
-
 class obs_stage : public observer
 {
 public:

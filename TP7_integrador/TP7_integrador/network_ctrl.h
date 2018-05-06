@@ -19,36 +19,21 @@ class network_ctrl :
 {
 public:
 	network_ctrl(netData * net, std::string name); //Constructor del controller.
-	~network_ctrl(); //Destructor del controller.
-
-
+	~network_ctrl();							   //Destructor del controller.
 	void * get_event(void * data);
-	void composeAndSend(Ev_t event);
 	bool isThereEvent();
-
 	void loadClient(client* cl);
 	void loadServer(server* sv);
-
 	std::string getName();
-
 private:
-
-	//---Esto sirve---//
 	void setEvent(Evnt evento, uint32_t wormID);
-
 	Ev_t ev[3];
 	Ev_t retValue[3];
-
 	void setName(std::string name);
 	std::string controllerType;
-
 	package_data pckg;
 	netData * net;
-
-
 	//Info de la red//
 	client * netClient;
 	server * netServer;
-	
-
 };

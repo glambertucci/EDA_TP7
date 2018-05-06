@@ -1,7 +1,6 @@
 #pragma once
 #include <allegro5\allegro.h>
 #include "Worm.h"
-#include "bitinit.h"
 #include <vector>
 #include "observer.h"
 #include <vector>
@@ -25,30 +24,23 @@ public:
 	void createWorms(Worm * worm);	//Crea un worm
 	vector<Worm> * getWorms();
 	void destroyWorm(unsigned int wormID);
-
 	void addObserver(observer * obs);
-
 	void wormMoveLeft(unsigned int wormID); //Métodos referentes al movimiento de los worms.
 	void wormMoveRight(unsigned int wormID);
 	void wormJump(unsigned int wormID);
 	void wormFlipLeft(unsigned int wormID);
 	void wormFlipRight(unsigned int wormID);
 	void wormFlip(unsigned int wormID);
-
 	void refresh(); //Métodos referentes al estado del programa.
 	void quit();
 	bool isOver();
-
 	//-----setters-----//
 	void setEventList(list<Ev_t> * list) { this->events = list; }
 
 
 	list<Ev_t> * getEventList() { return this->events; }
-
-
+	//---Getter--//
 	netData * getdata();
-
-
 private:
 	observer * searchForObserver(std::string controllerName);
 	vector<Worm> worms;

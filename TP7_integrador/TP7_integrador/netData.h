@@ -14,17 +14,10 @@ typedef enum { CLIENT, SERVER } mode;
 
 #define NOIP "No IP"
 #define IP "ip"
-
 #define LISTEN "escuchar"
 #define START "iniciar"
-
-
-
-
-/*
-netData:
-			netData es una clase que contiene toda la información pertinente al manejo de red, incluyendo lista de IPs, estado (server o client), 
-*/
+//netData:
+//			netData es una clase que contiene toda la información pertinente al manejo de red, incluyendo lista de IPs, estado (server o client), 
 class netData {
 public:
 	netData(server * sv, client * cl) {
@@ -38,13 +31,10 @@ public:
 		this ->netServer = sv;
 		this ->netClient = cl;
 	}
-
 	//------Setters------//
 	void setOwnIP(unsigned int i) { this->myIP = this->IPList.at(i); }
 	void setIfShouldEnd(bool shouldI) { this->end = shouldI; }
 	void setCurrentMode(mode newMode) { this->currentMode = newMode; }
-
-
 	//------Getters------//
 	std::string getOwnIP() { return this->myIP; }
 	const char * getIPAt(int i) { return this->IPList.at(i).c_str(); } //Devuelve la IP en una posición dada del vector.
@@ -56,24 +46,17 @@ public:
 	server * getServer() { return netServer; }
 	client * getClient() { return netClient; }
 	
-
 private:
-
 	std::string myIP; //La direccion IP de la computadora actual.
 	std::vector<std::string> IPList; //La lista de IPs de todas las máquinas involucradas
 	std::vector<unsigned int> orderList; //El orden en el cual solicitamos que se ejecute la animación entre máquinas.
 	unsigned int orderNumber; //Posición de la IP de esta máquina en la lista de IPs.
-
 	mode currentMode; //Modo actual de esta computadora
 	bool end; //¿Debería terminar la ejecución del programa?
-
-
 	//Modificados solo en el cosntructor//
 	const char * options[OPTION_QTY]; //Opciones y parámetros para el parser.
 	const char * params[PARAM_QTY];
 	server * netServer;
 	client * netClient;
-
-
 	void loadIPs();
 };

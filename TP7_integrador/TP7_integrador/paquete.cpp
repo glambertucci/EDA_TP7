@@ -142,21 +142,6 @@ void move_decompose(package_data& mydata, std::string a) {
 	mydata.id_worm = num;
 }
 
-bool checkValidPkgCompos(package_data pkg) {
-
-	bool valid = true;
-
-	if (pkg.header != I_AM_READY && pkg.header != ACK && pkg.header != ACKS && pkg.header != MOVE && pkg.header != QUIT && pkg.header != ERROR) {
-		valid = false;
-	}
-	else if(pkg.header == MOVE && (pkg.action != 'D' && pkg.action != 'I' && pkg.action != 'J' && pkg.action != 'T'))
-	{
-		valid = false;
-	}
-
-	return valid;
-}
-
 
 #define I_AM_READY 0x20
 #define ACK 0x01

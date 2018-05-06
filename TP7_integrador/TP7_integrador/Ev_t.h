@@ -20,7 +20,6 @@ typedef struct {
 	uint32_t wormID;
 	int keycode;
 	bool keyPressed = true;
-
 	void activate() {
 		if (Event == NOEVENT)
 			Event = lastEv;
@@ -29,7 +28,6 @@ typedef struct {
 	void deactivate() {
 		active = false;
 		lastEv = Event;
-
 	}
 	void newTimer() {
 		time = new Timer();
@@ -37,12 +35,10 @@ typedef struct {
 	bool timerExist() {
 		return time != NULL;
 	}
-
 	void killTimer() {
 		delete time;
 		time = NULL;
 	}
-	// Esta funcion mata al time despues de ser utilizada. CUIDADO
 	bool timerGreaterThan(float ms)
 	{
 		bool retValue = false;
@@ -50,7 +46,6 @@ typedef struct {
 		if (time->getTime() >= ms)
 			retValue = true;
 		killTimer();
-
 		return retValue;
 	}
 }Ev_t;
