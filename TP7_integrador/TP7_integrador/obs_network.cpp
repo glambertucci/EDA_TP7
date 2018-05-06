@@ -44,8 +44,6 @@ void obs_network::composeAndSend(Ev_t event, void * stage) {
 	}
 	else if (event.Event == QUIT_EV) {
 		pckg.header = QUIT;
-		pckg.action = NULL;
-		pckg.id_worm = NULL;
 	}
 
 	if (event.Event != NOEVENT && event.Event != TIMER_EV && shouldSend) { //Si no hay evento o es un evento de timer, no hay motivo para enviarlo.
