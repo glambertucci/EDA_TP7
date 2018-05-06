@@ -59,8 +59,8 @@ int main(int argc, char * argv[])
 		eventHandler.loadController(&nw_ctrl);
 
 		//Observer
-		obs_network obsnet(&net);
-		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE);
+		obs_network obsnet(&net, NETOBSNAME);
+		obs_stage obstage(JUMPFILE, JUMPPICS, WALKFILE, WALKPICS, BACKGROUNDFILE, STAGEFILE, STAGEOBSNAME);
 		stage.addObserver(&obstage);
 		stage.addObserver(&obsnet);
 
@@ -72,7 +72,6 @@ int main(int argc, char * argv[])
 		Worm worm2(&wormData);
 		stage.createWorms(&worm2);
 		stage.setEventList(eventHandler.getEventList());
-
 		nw_ctrl.loadClient(net.getClient());
 		nw_ctrl.loadServer(net.getServer());
 

@@ -1,7 +1,7 @@
 #include "Stage.h"
 #include "Ev_t.h"
 #include "observer.h"
-
+#include "paquete.h"
 
 unsigned int trasnformIDintoPos(unsigned int wormID);
 
@@ -49,7 +49,7 @@ void Stage::addObserver(observer * obs) //Agregamos un observer al vector de obs
 	observers.push_back(obs);
 }
 
-void Stage::wormMoveLeft(unsigned int wormID) 
+void Stage::wormMoveLeft(unsigned int wormID)
 {
 	worms[trasnformIDintoPos(wormID)].move(LEFT_DR);
 	lastAction = MOVE_LEFT_AT;
@@ -97,7 +97,17 @@ void Stage::refresh()
 
 void Stage::quit() //Pone al miembro "leave" en verdadero, para indicar la finalización del programa.
 {
-	leave = true;
+	package_data pckg;
+	if (searchForObserver(NETOBSNAME)) { //Este if pareciera superfluo, pero si no hay observer de Networking, no hay networking y por ende esta porcion de codigo no debe ejecutarse.
+			pckg.header = QUIT;
+			string stringConv = compose_pkt(pckg);
+			if (this->net->getCurrentMode() == SERVER) {
+				net->getServer()->sendMessage(stringConv.c_str(), stringConv.length());
+			}
+			else
+				net->getClient()->send_message(stringConv.c_str(), stringConv.length());
+		}
+	this->leave = true;
 }
 
 bool Stage::isOver() //Usado en Ifs para verificar el valor del miembro leave.
@@ -107,6 +117,19 @@ bool Stage::isOver() //Usado en Ifs para verificar el valor del miembro leave.
 
 void Stage::update() //Le pido a todo observer en el vector de observers que hagan un update.
 {
-	for (observer * obs : observers) 
+	for (observer * obs : observers)
 		obs->update(this);
+}
+
+
+observer * Stage::searchForObserver(std::string observerName) {
+
+	controller * retValue;
+
+	for (observer * obs : this->observers) {
+		if (obs->getName() == observerName) {
+			return obs;
+		}
+	}
+	return NULL;
 }

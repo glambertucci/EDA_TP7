@@ -6,14 +6,17 @@
 
 class obs_network :public::observer {
 public:
-	obs_network(netData * netObj) {
+	obs_network(netData * netObj, std::string name) {
 		this->net = netObj;
+		this->obsName = name;
 	}
 
 	void update(void * stage);
 	//-----setters-----//
 	void setEventList(list<Ev_t> * list) { this->events = list; }
 
+
+	std::string getName() { return this->obsName; }
 
 
 private:
@@ -24,4 +27,5 @@ private:
 
 	// Modificados solo en el constructor //
 	netData * net;
+	std::string obsName;
 };

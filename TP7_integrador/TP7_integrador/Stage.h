@@ -8,6 +8,7 @@
 #include "Ev_t.h"
 #include <list>
 #include "netData.h"
+#include "controller.h"
 using namespace std;
 
 typedef enum ActionType
@@ -40,6 +41,8 @@ public:
 
 	//-----setters-----//
 	void setEventList(list<Ev_t> * list) { this->events = list; }
+
+
 	list<Ev_t> * getEventList() { return this->events; }
 
 
@@ -47,6 +50,7 @@ public:
 
 
 private:
+	observer * searchForObserver(std::string controllerName);
 	vector<Worm> worms;
 	vector<observer *> observers;
 	ActionType lastAction;
@@ -54,5 +58,6 @@ private:
 	void update();
 	netData * net;
 	bool leave = false;
+
 };
 

@@ -1,9 +1,10 @@
 #include "obs_stage.h"
 #include "Worm.h"
 
-obs_stage::obs_stage(const char * jumpPath, int jumpSize, const char * walkPath, int walkSize, const char * background, const char * stageBitmap)
+obs_stage::obs_stage(const char * jumpPath, int jumpSize, const char * walkPath, int walkSize, const char * background, const char * stageBitmap, std::string name)
 {
 	this->jumpSize = jumpSize;
+	this->obsName = name;
 
 	for (int i = 0; i < (LANDING); i++) //Cargo las imagenes de la animación en sus vectores correspondientes.
 		if (i < WARMUP) {
