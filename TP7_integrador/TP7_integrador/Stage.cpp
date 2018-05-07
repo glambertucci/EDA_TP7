@@ -70,20 +70,26 @@ void Stage::wormJump(unsigned int wormID)
 
 void Stage::wormFlipLeft(unsigned int wormID)
 {
-	worms[trasnformIDintoPos(wormID)].flipLeft();
-	lastAction = FLIP_LEFT_AT;
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+		worms[trasnformIDintoPos(wormID)].flipLeft();
+		lastAction = FLIP_LEFT_AT;
+	}
 }
 
 void Stage::wormFlip(unsigned int wormID)
 {
-	worms[trasnformIDintoPos(wormID)].flip();
-	lastAction = FLIP_AT;
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+		worms[trasnformIDintoPos(wormID)].flip();
+		lastAction = FLIP_AT;
+	}
 }
 
 void Stage::wormFlipRight(unsigned int wormID)
 {
-	worms[trasnformIDintoPos(wormID)].flipRight();
-	lastAction = FLIP_RIGHT_AT;
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+		worms[trasnformIDintoPos(wormID)].flipRight();
+		lastAction = FLIP_RIGHT_AT;
+	}
 }
 
 void Stage::refresh()
