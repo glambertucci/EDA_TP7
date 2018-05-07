@@ -52,7 +52,7 @@ void Stage::addObserver(observer * obs) //Agregamos un observer al vector de obs
 
 void Stage::wormMoveLeft(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getState() != RIGHT_DR) {
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getDirection() != RIGHT_DR) {
 		worms[trasnformIDintoPos(wormID)].move(LEFT_DR);
 		lastAction = MOVE_LEFT_AT;
 	}
@@ -60,7 +60,7 @@ void Stage::wormMoveLeft(unsigned int wormID)
 
 void Stage::wormMoveRight(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getState() != LEFT_DR) {
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getDirection() != LEFT_DR) {
 		worms[trasnformIDintoPos(wormID)].move(RIGHT_DR);
 		lastAction = MOVE_RIGHT_AT;
 	}
@@ -74,7 +74,7 @@ void Stage::wormJump(unsigned int wormID)
 
 void Stage::wormFlipLeft(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+	if (worms[trasnformIDintoPos(wormID)].getState() == STILL_ST) {
 		worms[trasnformIDintoPos(wormID)].flipLeft();
 		lastAction = FLIP_LEFT_AT;
 	}
@@ -82,7 +82,7 @@ void Stage::wormFlipLeft(unsigned int wormID)
 
 void Stage::wormFlip(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+	if (worms[trasnformIDintoPos(wormID)].getState() == STILL_ST) {
 		worms[trasnformIDintoPos(wormID)].flip();
 		lastAction = FLIP_AT;
 	}
@@ -90,7 +90,7 @@ void Stage::wormFlip(unsigned int wormID)
 
 void Stage::wormFlipRight(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+	if (worms[trasnformIDintoPos(wormID)].getState() == STILL_ST) {
 		worms[trasnformIDintoPos(wormID)].flipRight();
 		lastAction = FLIP_RIGHT_AT;
 	}
