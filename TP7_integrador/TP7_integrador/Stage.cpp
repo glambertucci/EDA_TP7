@@ -52,7 +52,7 @@ void Stage::addObserver(observer * obs) //Agregamos un observer al vector de obs
 
 void Stage::wormMoveLeft(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getState() != RIGHT_DR) {
 		worms[trasnformIDintoPos(wormID)].move(LEFT_DR);
 		lastAction = MOVE_LEFT_AT;
 	}
@@ -60,7 +60,7 @@ void Stage::wormMoveLeft(unsigned int wormID)
 
 void Stage::wormMoveRight(unsigned int wormID)
 {
-	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST) {
+	if (worms[trasnformIDintoPos(wormID)].getState() != JUMP_ST && worms[trasnformIDintoPos(wormID)].getState() != LEFT_DR) {
 		worms[trasnformIDintoPos(wormID)].move(RIGHT_DR);
 		lastAction = MOVE_RIGHT_AT;
 	}
