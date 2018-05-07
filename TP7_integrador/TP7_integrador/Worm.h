@@ -47,13 +47,19 @@ public:
 	// Esta funcion forza al worm a mirar a la derecha
 	void flipRight();
 	// Esta función fuerza al Worm a voltearse independientemente de qué dirección esté observando.
+	
+	
 	void flip();
 	State getState();
 	Direction getDirection();
+	Direction getLastDirection() { return this->lastDirection; }
 	float getX();
 	void setX(float Xcoord);
 	float getY();
 	int getTicks();
+
+
+
 	// Actualiza al worm. Esta funcion va a llamar a doMove y doJump que son las funciones que se encargan
 	// de mover al worm.
 	void update();
@@ -62,6 +68,7 @@ private:
 	void doJump();		//To use them ypu should set the state using 'move' and 'jump'
 	bool isXValid();
 	Direction direction;
+	Direction lastDirection; //Util para los flips en networking.
 	Point coord;
 	State prev_state;
 	State state;

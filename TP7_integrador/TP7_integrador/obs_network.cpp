@@ -59,19 +59,20 @@ void obs_network::composeAndSend(Ev_t event, void * stage) { /*Esta función comp
 }
 
 bool obs_network::shouldFlip(Ev_t ev, void * stage) {
+
 	bool shouldI = false;
 	Stage * scenario = (Stage *)stage;
 	vector<Worm> * wormVect = scenario->getWorms();
 	if ((scenario->getdata())->getCurrentMode() == CLIENT) {
-		if (((*wormVect)[1].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
+		if (((*wormVect)[1].getLastDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
 			shouldI = true;
-		else if (((*wormVect)[1].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
+		else if (((*wormVect)[1].getLastDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
 			shouldI = true;
 	}
 	else {
-		if (((*wormVect)[0].getDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
+		if (((*wormVect)[0].getLastDirection() == RIGHT_DR) && (ev.Event == FLIP_LEFT_EV))
 			shouldI = true;
-		else if (((*wormVect)[0].getDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
+		else if (((*wormVect)[0].getLastDirection() == LEFT_DR) && (ev.Event == FLIP_RIGHT_EV))
 			shouldI = true;
 	}
 	return shouldI;

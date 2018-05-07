@@ -28,6 +28,7 @@ Worm::~Worm(){}
 void Worm::move(Direction a)
 {
 	if (this->prev_state != JUMP_ST){
+		this->lastDirection = this->direction;
 		this->direction = a;
 		this->prev_state = state;
 		this->state = MOVE_ST;
@@ -43,10 +44,12 @@ void Worm::jump()
 }
 
 void Worm::flipLeft(){
+	this->lastDirection = this->direction;
 	this->direction = (this->direction == LEFT_DR ? LEFT_DR : LEFT_DR);
 }
 
 void Worm::flipRight() {
+	this->lastDirection = this->direction;
 	this->direction = (this->direction == RIGHT_DR ? RIGHT_DR : RIGHT_DR);
 }
 

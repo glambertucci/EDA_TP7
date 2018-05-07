@@ -39,14 +39,19 @@ network_ctrl::~network_ctrl()
 
 
 void * network_ctrl::get_event(void * data) {
+
 	ev[0].deactivate(); //La posición 0 la uso para input de teclado. La desactivo para recibir una nueva (e indicar que ya se trabajó la anterior)
 	ev[1].deactivate(); //La posición 1 la uso para los eventos de timer, además de cerrar por display. La desactivo pues ya se debe haber procesado el evento anterior en caso de que haya habido uno.	
+	
 	int * size = (int *)data;  //Size es la variable que devolveré, que corresponderá a la cantidad de eventos que cargaré y se deberán trabajar.
 	std::string input = ERR_STR;
+
 	if (this->net->getCurrentMode() == SERVER) 
 		input = this->netServer->receiveMessage();
 	else 
 		input = this->netClient->receiveMessage();
+
+
 	if (input != ERR_STR) { //Si recibi un paquete exitósamente, usaré su contenido para mover al segundo worm.
 		if(input != NOPACKAGE)
 		{
@@ -63,11 +68,15 @@ void * network_ctrl::get_event(void * data) {
 			}
 		}
 	}
+
 	int counter = 0;
+
 	for (int i = 0; i<3; i++) //Me fijo cuantos eventos están activos con un contador.
 		if (ev[i].active)
 			retValue[counter++] = ev[i]; //Aquellos que estén activos son copiados en retValue para trabajarlos luego.
+
 	*size = counter; //Guardo la cantidad de eventos activos que hay.
+
 	return retValue; //Devuelvo la posición de memoria de retValue, pues este método devuelve un puntero a void.
 }
 

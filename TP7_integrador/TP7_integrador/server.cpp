@@ -51,7 +51,7 @@ std::string server::receiveMessage() {
 	}
 
 	do {
-	len=	this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
+		len=this->socket_forServer->read_some(boost::asio::buffer(buf, 30), error);
 	if(notfirst){
 		time.stop();
 		if (time.getTime() > TIMEOUT)
